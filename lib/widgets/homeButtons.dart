@@ -13,7 +13,7 @@ void signUpScreen(BuildContext ctx){
   @override
   Widget build(BuildContext context) {
     return Padding(
-            padding: const EdgeInsets.all(100.0),
+            padding: const EdgeInsets.all(85.0),
             child: Column(
               children: <Widget>[
                 

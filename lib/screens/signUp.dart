@@ -59,7 +59,7 @@ class SignUp extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: TextField(
                   
-                  style: TextStyle(color: Colors.white,),
+                  
                   obscureText: true,
                   controller: passwordController,
                   decoration: const InputDecoration(

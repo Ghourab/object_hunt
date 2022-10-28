@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:object_hunt/screens/arGameScreen.dart';
+
+
+// import './screens/loadingScreen.dart';
+// import './screens/editProfile.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -32,7 +38,12 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
            ),),
+
       home: ArGameScreen(),
+
+      // home: LoadingScreen(),
+      // home: EditProfile(),
+
     );
   }
 }

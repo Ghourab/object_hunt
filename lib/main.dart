@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:object_hunt/screens/arGameScreen.dart';
+import 'screens/loadingScreen.dart';
 
 
 // import './screens/loadingScreen.dart';
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
                 ),
            ),),
 
-      home: ArGameScreen(),
+      home: LoadingScreen(),
 
       // home: LoadingScreen(),
       // home: EditProfile(),

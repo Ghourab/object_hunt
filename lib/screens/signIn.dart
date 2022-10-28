@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../data/database.dart';
+import '../models/users.dart';
+import '../screens/arGameScreen.dart';
 import '../widgets/backGround.dart';
 
 
@@ -11,10 +14,15 @@ class SignIn extends StatefulWidget {
 }
  
 class _SignInState extends State<SignIn> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+List<User> users=getUsersList();
   
+  void startScreen(BuildContext ctx){
+  Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
+    return ArGameScreen();
+  },),);
+}
   void popScreen(BuildContext ctx){
   Navigator.of(ctx).pop(ctx);
 }
@@ -50,12 +58,12 @@ class _SignInState extends State<SignIn> {
               Container(
                 padding: const EdgeInsets.all(10),
                 child: TextField(
-                  controller: nameController,
+                  controller: emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     filled: true,
                     fillColor:Colors.white,
-                    labelText: 'User Name',
+                    labelText: 'Email',
                   ),
                 ),
               ),
@@ -79,8 +87,19 @@ class _SignInState extends State<SignIn> {
                   child: ElevatedButton(
                     child: const Text('Login'),
                     onPressed: () {
-                      print(nameController.text);
-                      print(passwordController.text);
+                      
+                      
+                        users.forEach((element) {
+                          print(element);
+                          if(element.email == emailController.text && element.password == passwordController.text)
+                          {
+                            
+                          
+                          startScreen(context);
+                          }
+                      
+                  }
+    );
                     },
                   )
               ),

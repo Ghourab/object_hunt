@@ -6,6 +6,7 @@ import '../widgets/backGround.dart';
 
 class SignUp extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
 
@@ -42,8 +43,8 @@ class SignUp extends StatelessWidget {
                   child: const Text(
                     'Sign Up',
                     style: TextStyle(fontSize: 20,color: Colors.white,),
-                  )),
-              Container(
+                  ),),
+                  Container(
                 padding: const EdgeInsets.all(10),
                 child: TextField(
                   controller: nameController,
@@ -52,6 +53,18 @@ class SignUp extends StatelessWidget {
                     filled: true,
                     fillColor:Colors.white,
                     labelText: 'User Name',
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    fillColor:Colors.white,
+                    labelText: 'Email',
                   ),
                 ),
               ),
@@ -90,7 +103,8 @@ class SignUp extends StatelessWidget {
                   child: ElevatedButton(
                     child: const Text('Sign up'),
                     onPressed: () {
-                      print(nameController.text);
+                      print(emailController.text);
+                      print(emailController.text);
                       print(passwordController.text);
                       print(confirmPasswordController.text);
                     },

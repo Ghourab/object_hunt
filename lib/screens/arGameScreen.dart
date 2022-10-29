@@ -6,6 +6,8 @@ import 'package:ar_flutter_plugin/models/ar_node.dart';
 import 'package:ar_flutter_plugin/widgets/ar_view.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/seekerScreen.dart';
+
 class ArGameScreen extends StatefulWidget {
   
   @override
@@ -13,6 +15,12 @@ class ArGameScreen extends StatefulWidget {
 }
 
 class _ArGameScreenState extends State<ArGameScreen> {
+    void seekerScreen(BuildContext ctx){
+  Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
+    return SeekerScreen();
+  },),);
+}
+
 late ARSessionManager arSessionManager;
 
 late ARObjectManager arObjectManager;
@@ -39,12 +47,47 @@ void onARViewCreated(
      );
  // 3
  this.arObjectManager.onInitialize();
+ 
 } 
 
+String permission= Text('camera permission').toString();
   @override
   Widget build(BuildContext context) {
-    return ARView(
- onARViewCreated: onARViewCreated,
-);
+    return Scaffold(
+         appBar: AppBar(
+        title: Text('Object Hunt'),
+        backgroundColor: Colors.lightBlue,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: ListView(
+          
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .8,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(22),
+                child: ARView(
+                  onARViewCreated: onARViewCreated,
+                  permissionPromptDescription: '',
+                ),
+              ),
+            ),
+            
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: () => seekerScreen(context),
+                      child: const Text('End Turn')),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+              
+              ],
+            ),
+          
+        ),
+      
+    );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/database.dart';
 import '../models/users.dart';
-import '../screens/arGameScreen.dart';
+import '../screens/hiderScreen.dart';
 import '../widgets/backGround.dart';
 
 
@@ -20,7 +20,7 @@ List<User> users=getUsersList();
   
   void startScreen(BuildContext ctx){
   Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
-    return ArGameScreen();
+    return HiderScreen();
   },),);
 }
   void popScreen(BuildContext ctx){

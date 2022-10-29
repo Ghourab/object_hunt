@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.object_hunt">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="object_hunt"
+        android:label="Object Hunt"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

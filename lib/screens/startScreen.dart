@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/editProfile.dart';
 
 import '../screens/hiderScreen.dart';
 
@@ -10,19 +11,24 @@ class StartScreen extends StatelessWidget {
   },),);
 }
 
+ void editProfileScreen(BuildContext ctx){
+  Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
+    return EditProfile();
+  },),);
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
           child: ListView(
         padding: const EdgeInsets.all(0),
-        children: const [
+        children: [
           DrawerHeader(
             child: Text('Menu'),
             decoration: BoxDecoration(color: Colors.blue),
           ),
           ListTile(
-            title: Text('Profile'),
+            title: Text('Profile'),onTap: () => editProfileScreen(context),
           ),
           ListTile(
             title: Text('Settings'),

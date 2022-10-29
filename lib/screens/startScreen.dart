@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import '../screens/editProfile.dart';
 
+import '../models/users.dart';
+import '../screens/editProfile.dart';
 import '../screens/hiderScreen.dart';
 
 class StartScreen extends StatelessWidget {
-
+  final User value;
+ const StartScreen({Key? key,required this.value}) : super(key: key);
     void hiderScreen(BuildContext ctx){
   Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
     return HiderScreen();
   },),);
 }
 
- void editProfileScreen(BuildContext ctx){
+ void editProfileScreen(BuildContext ctx,User value){
   Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
-    return EditProfile();
+    return EditProfile(value:value);
   },),);
 }
   @override
@@ -28,7 +30,7 @@ class StartScreen extends StatelessWidget {
             decoration: BoxDecoration(color: Colors.blue),
           ),
           ListTile(
-            title: Text('Profile'),onTap: () => editProfileScreen(context),
+            title: Text('Profile'),onTap: () => editProfileScreen(context,this.value),
           ),
           ListTile(
             title: Text('Settings'),

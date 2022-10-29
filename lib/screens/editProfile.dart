@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
-class EditProfile extends StatefulWidget {
-  const EditProfile({Key? key}) : super(key: key);
+import '../models/users.dart';
 
+class EditProfile extends StatefulWidget {
+  final User value;
+  const EditProfile({Key? key, required this.value}) : super(key: key);
+  
   @override
-  _EditProfileState createState() => _EditProfileState();
+  _EditProfileState createState() => _EditProfileState(this.value);
 }
 
 class _EditProfileState extends State<EditProfile> {
+  
   bool showPassword = false;
+
+  User value;
+  _EditProfileState(this.value);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +60,8 @@ class _EditProfileState extends State<EditProfile> {
                 ],
               ),
             ),
-              buildTextField("Full Name", "hady", false),
-              buildTextField("E-mail", "hady@gmail.com", false),
+              buildTextField("Full Name", value.name, false),
+              buildTextField("E-mail", value.email, false),
               buildTextField("Password", "********", true),
               buildTextField("Location", "cairo", false),
                SizedBox(
@@ -97,8 +104,11 @@ class _EditProfileState extends State<EditProfile> {
             suffixIcon: isPasswordTextField
                 ? IconButton(
                     onPressed: () {
+                      print(placeholder);
                       setState(() {
                         showPassword = !showPassword;
+                        placeholder = value.password;
+                        print(placeholder);
                       });
                     },
                     icon: Icon(

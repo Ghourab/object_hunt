@@ -10,22 +10,25 @@ class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
  
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignIn> createState() => SignInState();
 }
  
-class _SignInState extends State<SignIn> {
+class SignInState extends State<SignIn> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 List<User> users=getUsersList();
+
   
-  void startScreen(BuildContext ctx){
+  void startScreen(BuildContext ctx,User value){
   Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
-    return StartScreen();
+    return StartScreen(value:value);
   },),);
 }
   void popScreen(BuildContext ctx){
   Navigator.of(ctx).pop(ctx);
 }
+
+
  
   @override
   Widget build(BuildContext context) {
@@ -94,8 +97,8 @@ List<User> users=getUsersList();
                           if(element.email == emailController.text && element.password == passwordController.text)
                           {
                             
-                          
-                          startScreen(context);
+                         
+                          startScreen(context,element);
                           }
                       
                   }

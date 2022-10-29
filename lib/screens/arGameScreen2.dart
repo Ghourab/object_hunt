@@ -6,24 +6,16 @@ import 'package:ar_flutter_plugin/models/ar_node.dart';
 import 'package:ar_flutter_plugin/widgets/ar_view.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/seekerScreen.dart';
-
-class ArGameScreen extends StatefulWidget {
+class ArGameScreen2 extends StatefulWidget {
   
   @override
-  _ArGameScreenState createState() => _ArGameScreenState();
+  _ArGameScreen2State createState() => _ArGameScreen2State();
 }
 
-class _ArGameScreenState extends State<ArGameScreen> {
-  
+class _ArGameScreen2State extends State<ArGameScreen2> {
+
   void popScreen(BuildContext ctx){
   Navigator.of(ctx).pop(ctx);
-}
-
-    void seekerScreen(BuildContext ctx){
-  Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
-    return SeekerScreen();
-  },),);
 }
 
 late ARSessionManager arSessionManager;
@@ -81,9 +73,7 @@ String permission= Text('camera permission').toString();
             
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: (){
-                        popScreen(context); 
-                        seekerScreen(context);},
+                      onPressed: () => popScreen(context),
                       child: const Text('End Turn')),
                 ),
                 const SizedBox(

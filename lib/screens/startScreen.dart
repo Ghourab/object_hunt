@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../screens/hiderScreen.dart';
+
 class StartScreen extends StatelessWidget {
+
+    void hiderScreen(BuildContext ctx){
+  Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
+    return HiderScreen();
+  },),);
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +37,7 @@ class StartScreen extends StatelessWidget {
         width: double.infinity,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/object_hunt.png'), fit: BoxFit.fill)),
+                image: AssetImage('assets/images/object_hunt.png'), fit: BoxFit.fill)),
         child: ListView(padding: const EdgeInsets.all(10), children: [
           // Image.asset('assets/object_hunt.png'),
 
@@ -38,7 +47,7 @@ class StartScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(onPressed: () {}, child: const Text('Start')),
+              ElevatedButton(onPressed: ()=>hiderScreen(context), child: const Text('Start')),
               ElevatedButton(onPressed: () {}, child: const Text('Score'))
             ],
           )

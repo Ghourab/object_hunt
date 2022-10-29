@@ -21,6 +21,7 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       drawer: Drawer(
           child: ListView(
         padding: const EdgeInsets.all(0),
@@ -41,22 +42,29 @@ class StartScreen extends StatelessWidget {
         title: const Text('Welcome to Object Hunt'),
       ),
       body: Container(
+        margin: EdgeInsets.only(bottom: 200),
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/object_hunt.png'), fit: BoxFit.fill)),
-        child: ListView(padding: const EdgeInsets.all(10), children: [
+            image: AssetImage('assets/images/Logo_final.png'))),
+            child: ListView(padding: const EdgeInsets.all(10), children: [
           // Image.asset('assets/object_hunt.png'),
 
           const SizedBox(
-            height: 500,
+            height: 400,
           ),
-          Row(
+          Column(
+           
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(onPressed: ()=>hiderScreen(context), child: const Text('Start')),
-              ElevatedButton(onPressed: () {}, child: const Text('Score'))
+              ElevatedButton(onPressed: ()=>hiderScreen(context),
+              
+               style: ElevatedButton.styleFrom(primary : Colors.teal[200],),
+               child: const Text('Start', 
+               style: TextStyle(fontSize: 20, color: Colors.black),)),
+
+              ElevatedButton(onPressed: () {}, child: const Text('Score',style: TextStyle(fontSize: 19.5, color: Colors.black),))
             ],
           )
         ]),

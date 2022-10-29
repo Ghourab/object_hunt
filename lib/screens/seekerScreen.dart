@@ -11,7 +11,7 @@ class SeekerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
         splashIconSize: 300,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         pageTransitionType: PageTransitionType.bottomToTop,
         splashTransition: SplashTransition.rotationTransition,
         splash:   Container(child: Center(child: Text('Seeker Turn',style:TextStyle(color: Colors.blue,fontSize: 46),)) ,color: Colors.black ,width:double.infinity),

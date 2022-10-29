@@ -21,7 +21,7 @@ class StartScreen extends StatelessWidget {
 }
  void scoreBoardScreen(BuildContext ctx){
   Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
-    return ScoreBoardScreen();
+    return ScoreBoard();
   },),);
 }
 

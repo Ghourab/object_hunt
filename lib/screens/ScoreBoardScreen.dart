@@ -1,26 +1,17 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
 
-final String appName = "Clash Of Cupheads";
 
-class MyApp extends StatelessWidget {
+
+
+
+
+class ScoreBoardScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: appName,
-      color: Colors.yellow[500],
-      home: Game(),
-    );
-  }
+  _ScoreBoardScreenState createState() => _ScoreBoardScreenState();
 }
 
-class Game extends StatefulWidget {
-  @override
-  _GameState createState() => _GameState();
-}
-
-class _GameState extends State<Game> {
+class _ScoreBoardScreenState extends State<ScoreBoardScreen> {
   late BuildContext _context;
   int _cupheadScore = 0;
   int _cupheadHP = 25;
@@ -36,12 +27,9 @@ class _GameState extends State<Game> {
     _context = context;
     return Scaffold(
       backgroundColor: Colors.yellow[100],
-      appBar: AppBar(
-        backgroundColor: Colors.yellow[500],
-        title: Text(
-          appName,
-          style: TextStyle(color: Colors.black),
-        ),
+    appBar: AppBar(
+        title: Text('Object Hunt'),
+      
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.refresh),
@@ -160,7 +148,7 @@ class _GameState extends State<Game> {
   }
 
   Widget playerInformation({required String playerName}) {
-    List<Color> colors = [Colors.red[100], Colors.red[400], Colors.red[500]];
+    List<Color> colors = [ Colors.red, Colors.red, Colors.red];
     String playerImage = "assets/cuphead_running.png";
     double playerImagePadding = 12;
 

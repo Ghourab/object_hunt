@@ -18,6 +18,12 @@ class StartScreen extends StatelessWidget {
     return EditProfile(value:value);
   },),);
 }
+ void scoreBoardScreen(BuildContext ctx){
+  Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
+    return ScoreBoardScreen();
+  },),);
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,10 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.object_hunt">
-    <uses-permission android:name="android.permission.INTERNET"/>
+    package="com.objecthuntt.object_hunt">
+    <uses-permission android:exported="true"
+    android:name="android.permission.INTERNET"/>
    <application
         android:label="Object Hunt"
         android:icon="@mipmap/ic_launcher">
         <activity
+            android:exported="true"
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
@@ -28,7 +30,7 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
-            <intent-filter>
+            <intent-filter android:exported="true">
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>

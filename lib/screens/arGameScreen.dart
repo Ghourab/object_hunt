@@ -25,19 +25,23 @@ class _ArGameScreenState extends State<ArGameScreen> {
     return SeekerScreen();
   },),);
 }
-
+// for managing the configurations of session, parameters, and events
 late ARSessionManager arSessionManager;
 
+// manage all node actions
 late ARObjectManager arObjectManager;
 
+// for the position of the object
 ARNode? localObjectNode;
 
 ARNode? webObjectNode;
 
 void onARViewCreated(
+  
    ARSessionManager arSessionManager,
    ARObjectManager arObjectManager,
    ARAnchorManager arAnchorManager,
+   // to get the current location of the device
    ARLocationManager arLocationManager) {
  // 1
  this.arSessionManager = arSessionManager;
@@ -55,7 +59,7 @@ void onARViewCreated(
  
 } 
 
-String permission= Text('camera permission').toString();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

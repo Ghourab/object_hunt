@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import '../models/users.dart';
 import '../screens/ScoreBoardScreen.dart';
 import '../screens/editProfile.dart';
-import '../screens/hiderScreen.dart';
+import '../screens/instructionsScreen.dart';
 
 class StartScreen extends StatelessWidget {
   final User value;
   const StartScreen({Key? key, required this.value}) : super(key: key);
-  void hiderScreen(BuildContext ctx) {
+
+  void instructionScreen(BuildContext ctx) {
     Navigator.of(ctx).push(
       MaterialPageRoute(
         builder: (_) {
-          return HiderScreen();
+          return InstructionScreen();
         },
       ),
     );
@@ -80,7 +81,7 @@ class StartScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                  onPressed: () => hiderScreen(context),
+                  onPressed: () => instructionScreen(context),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.teal[200],
                   ),

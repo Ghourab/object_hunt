@@ -1,8 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
+
+import '../screens/hiderScreen.dart';
 
 class InstructionScreen extends StatefulWidget {
   const InstructionScreen({Key? key}) : super(key: key);
@@ -13,6 +13,15 @@ class InstructionScreen extends StatefulWidget {
 
 class _MyWidgetState extends State<InstructionScreen> {
   List<Slide> slides = [];
+  void hiderScreen(BuildContext ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        builder: (_) {
+          return HiderScreen();
+        },
+      ),
+    );
+  }
 
   @override
   void initState() {
@@ -52,7 +61,7 @@ class _MyWidgetState extends State<InstructionScreen> {
   }
 
   void onDonePress() {
-    log("End of slides");
+    hiderScreen(context);
   }
 
   @override

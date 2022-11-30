@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/users.dart';
-import '../screens/ScoreBoardScreen.dart';
+import '../screens/leaderBoardScreen.dart';
 import '../screens/editProfile.dart';
 import '../screens/instructionsScreen.dart';
 
@@ -29,11 +29,11 @@ class StartScreen extends StatelessWidget {
     );
   }
 
-  void scoreBoardScreen(BuildContext ctx) {
+  void leaderBoardScreen(BuildContext ctx) {
     Navigator.of(ctx).push(
       MaterialPageRoute(
         builder: (_) {
-          return ScoreBoard();
+          return LeaderBoard();
         },
       ),
     );
@@ -92,7 +92,7 @@ class StartScreen extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                  onPressed: () => scoreBoardScreen(context),
+                  onPressed: () => leaderBoardScreen(context),
                   child: const Text(
                     'Score',
                     style: TextStyle(fontSize: 19.5, color: Colors.black),

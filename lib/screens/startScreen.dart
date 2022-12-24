@@ -83,7 +83,7 @@ class StartScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () => instructionScreen(context),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal[200],
+                    primary: Colors.teal[200],
                   ),
                   child: const Text(
                     'Start',

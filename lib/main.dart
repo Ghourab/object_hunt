@@ -39,9 +39,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
-      home: LoadingScreen(),
+      //home: ArGameScreen(),
 
-      // home: LoadingScreen(),
+      home: LoadingScreen(),
       // home: EditProfile(),
     );
   }

@@ -2,10 +2,11 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../screens/arGameScreen2.dart';
+import '../screens/readyScreen.dart';
 
 class SeekerScreen extends StatelessWidget {
-  
+  final List value;
+  const SeekerScreen({Key? key, required this.value}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,8 @@ class SeekerScreen extends StatelessWidget {
         splashTransition: SplashTransition.rotationTransition,
         splash:   Container(child: Center(child: Text('Seeker Turn',style:TextStyle(color: Colors.blue,fontSize: 46),)) ,color: Colors.black ,width:double.infinity),
         
-        nextScreen:  ArGameScreen2(),
+        nextScreen:  ReadyScreen(),
+        
   
 // we can use
         duration: 1000,

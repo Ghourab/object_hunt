@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../models/users.dart';
-import '../screens/leaderBoardScreen.dart';
 import '../screens/editProfile.dart';
 import '../screens/instructionsScreen.dart';
+import '../screens/leaderBoardScreen.dart';
 
 class StartScreen extends StatelessWidget {
   final User value;

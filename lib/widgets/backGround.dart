@@ -9,8 +9,11 @@ final Widget widget;
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: double.infinity,
-        width: double.infinity,
+        // height: double.infinity,
+        height: MediaQuery.of(context).size.height,
+        // width: double.infinity,
+        width: MediaQuery.of(context).size.width,
+
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage("assets/images/backgroundImportant.gif"),

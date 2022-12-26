@@ -44,8 +44,7 @@ class StartScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       drawer: Drawer(
-          child: ListView(
-        padding: const EdgeInsets.all(0),
+          child: Column(
         children: [
           DrawerHeader(
             child: Text('Menu'),
@@ -61,16 +60,17 @@ class StartScreen extends StatelessWidget {
         ],
       )),
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Welcome to Object Hunt'),
       ),
       body: Container(
-        margin: EdgeInsets.only(bottom: 100),
-        height: double.infinity,
-        width: double.infinity,
+        margin: EdgeInsets.only(bottom: 150),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/Logo_final.png'))),
-        child: ListView(padding: const EdgeInsets.all(75), children: [
+        child: Column(children: [
           // Image.asset('assets/object_hunt.png'),
 
           const SizedBox(
@@ -79,7 +79,7 @@ class StartScreen extends StatelessWidget {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: ElevatedButton(
                   onPressed: () => instructionScreen(context),
                   style: ElevatedButton.styleFrom(

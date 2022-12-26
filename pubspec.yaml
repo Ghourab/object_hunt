@@ -58,6 +58,7 @@ flutter:
   assets:
     - assets/images/Logo_final.png
     - assets/images/backgroundImportant.gif
+    - assets/images/giphy.gif
     - assets/images/object_hunt.png
     - assets/images/alert_1.png
     - assets/images/alert_2.png

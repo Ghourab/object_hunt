@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/users.dart';
+import '../models/user.dart';
 import '../screens/editProfile.dart';
 import '../screens/instructionsScreen.dart';
 import '../screens/leaderBoardScreen.dart';

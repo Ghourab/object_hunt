@@ -1,4 +1,4 @@
-import '../models/users.dart';
+import '../models/user.dart';
 
 List<User> getUsersList() {
   return <User>[
@@ -7,6 +7,8 @@ List<User> getUsersList() {
       id: 1,
       email: 'ahmed@gmail.com',
       password: 'ahmed22',
+      dob: '06/08/2001',
+      image: 'http://'
     )
   ];
 }

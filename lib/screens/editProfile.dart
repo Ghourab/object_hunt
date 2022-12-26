@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/users.dart';
+import '../models/user.dart';
 
 class EditProfile extends StatefulWidget {
   final User value;

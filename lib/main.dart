@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'screens/loadingScreen.dart';
+import '/providers/auth.dart';
+import 'screens/auth_screen.dart';
 
 // import './screens/loadingScreen.dart';
 // import './screens/editProfile.dart';
@@ -13,7 +15,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: [ ChangeNotifierProvider.value(
+          value: Auth(),
+        ),],
+      child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'object hunt',
       theme: ThemeData(
@@ -41,8 +47,8 @@ class MyApp extends StatelessWidget {
 
       //home: ArGameScreen(),
 
-      home: LoadingScreen(),
+      home: AuthScreen(),
       // home: EditProfile(),
-    );
+    ),);
   }
 }

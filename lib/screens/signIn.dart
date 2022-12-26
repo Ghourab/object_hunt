@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../data/database.dart';
-import '../models/users.dart';
+import '../models/user.dart';
 import '../screens/startScreen.dart';
 import '../widgets/backGround.dart';
 
@@ -21,7 +21,7 @@ List<User> users=getUsersList();
   
   void startScreen(BuildContext ctx,User value){
   Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
-    return StartScreen(value:value);
+    return StartScreen();
   },),);
 }
   void popScreen(BuildContext ctx){

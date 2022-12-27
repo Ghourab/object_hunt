@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:object_hunt/models/http_exception.dart';
-import 'package:object_hunt/models/user.dart';
-import 'package:object_hunt/screens/startScreen.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth.dart';
@@ -30,15 +28,7 @@ class _AuthCardState extends State<AuthCard> {
   var _isLoading = false;
   final _passwordController = TextEditingController();
   TextEditingController dateInput = TextEditingController();
-   void startScreen(BuildContext ctx,value) {
-    Navigator.of(ctx).pushReplacement(
-      MaterialPageRoute(
-        builder: (_) {
-          return StartScreen(value:value);
-        },
-      ),
-    );
-  }
+
 
 
   @override
@@ -81,16 +71,11 @@ class _AuthCardState extends State<AuthCard> {
         await Provider.of<Auth>(context, listen: false).signup(
           _authData['email']!,
           _authData['password']!,
+          _authData['name']!,
+          _authData['dob']!,
         );
       }
-      startScreen(context, User(
-      name: 'Ahmed Sameh',
-      id: 1,
-      email: 'ahmed@gmail.com',
-      password: 'ahmed22',
-      dob: '06/08/2001',
-      image: 'http://'
-    ));
+
       // specific type of error
     } on HttpException catch (error) {
       var errorMessage = 'Authentication Failed';
@@ -246,24 +231,17 @@ class _AuthCardState extends State<AuthCard> {
                 if (_isLoading)
                   CircularProgressIndicator()
                 else
-                  RaisedButton(
+                  ElevatedButton(
                     child:
                         Text(_authMode == AuthMode.Login ? 'LOGIN' : 'SIGN UP'),
                     onPressed: _submit,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.black,
+                    
                   ),
-                FlatButton(
+                TextButton(
                   child: Text(
                       '${_authMode == AuthMode.Login ? 'SIGNUP' : 'LOGIN'} INSTEAD'),
                   onPressed: _switchAuthMode,
-                  padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 4),
-                  textColor: Theme.of(context).primaryColor,
+                  
                 ),
               ],
             ),

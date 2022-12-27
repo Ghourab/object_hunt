@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/user.dart';
+import '../providers/auth.dart';
 import '../screens/editProfile.dart';
 import '../screens/instructionsScreen.dart';
 import '../screens/leaderBoardScreen.dart';
@@ -56,6 +58,14 @@ class StartScreen extends StatelessWidget {
           ),
           ListTile(
             title: Text('Settings'),
+          ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Logout'),
+            onTap: () {
+              Provider.of<Auth>(context, listen: false).logout();
+              
+            },
           ),
         ],
       )),

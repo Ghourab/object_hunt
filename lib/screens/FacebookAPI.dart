@@ -1,30 +1,57 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+class _HomePageState extends State<HomePage> {
+  bool _isLoggedIn = false;
+  Map _userObj = {};
 
-
-
-const myAPI = '9403ed93ad383865fbf47fbb8d597748';
-const appIdAPI = 'ab9704c5';
-
-late List logincomponents=[];
-
-class Login {
-
-  Future foodRecipe(String selectedFood) async {
-
-  var url='https://api.edamam.com/api/recipes/v2?type=public&q=$selectedFood&app_id=$appIdAPI&app_key=$myAPI';
-    http.Response response=await http.get(Uri.parse(url));
-
-    if(response.statusCode==200) {//hits[0].recipe.ingredients
-      var data = jsonDecode(response.body);
-      foodComponents=data['hits'][0]['recipe']['ingredients'];
-      return foodComponents;
-    }
-    else{
-      ('Failed to load the ingredients');
-     // print(response.statusCode);
-    }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Codesundar"),
+      ),
+      body: Container(
+        child: _isLoggedIn
+            ? Column(
+                children: [
+                  Image.network(_userObj["picture"]["data"]["url"]),
+                  Text(_userObj["name"]),
+                  Text(_userObj["email"]),
+                  TextButton(
+                      onPressed: () {
+                        FacebookAuth.instance.logOut().then((value) {
+                          setState(() {
+                            _isLoggedIn = false;
+                            _userObj = {};
+                          });
+                        });
+                      },
+                      child: Text("Logout"))
+                ],
+              )
+            : Center(
+                child: ElevatedButton(
+                  child: Text("Login with Facebook"),
+                  onPressed: () async {
+                    FacebookAuth.instance.login(
+                        permissions: ["public_profile", "email"]).then((value) {
+                      FacebookAuth.instance.getUserData().then((userData) {
+                        setState(() {
+                          _isLoggedIn = true;
+                          _userObj = userData;
+                        });
+                      });
+                    });
+                  },
+                ),
+              ),
+      ),
+    );
   }
 }

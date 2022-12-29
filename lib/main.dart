@@ -10,6 +10,7 @@ import 'screens/auth_screen.dart';
 
 // import './screens/loadingScreen.dart';
 // import './screens/editProfile.dart';
+import 'package:flutter/services.dart';
 
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();

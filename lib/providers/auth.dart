@@ -1,12 +1,15 @@
 import'dart:async';
 import 'dart:convert';
 
-//import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/http_exception.dart';
+
+
 
 class Auth with ChangeNotifier {
   String? _token;
@@ -60,12 +63,20 @@ class Auth with ChangeNotifier {
     _userId=responseData['localId'];
     _expiryDate= DateTime.now().add(Duration(seconds: int.parse(responseData['expiresIn']),),);
     // if(urlSegment=='signUp'){
-    //   await FirebaseFirestore.instance.collection('users').add({
+    //    await FirebaseFirestore.instance.collection('users').add({
     //     'username':name,
     //     'email':email,
     //     'dob':dob,
     //   });
     // }
+
+     if(urlSegment=='signUp'){
+       await FirebaseFirestore.instance.collection('users').doc(_userId).set({
+        'username':name,
+        'email':email,
+        'dob':dob,
+      });
+    }
     _autoLogout();
     notifyListeners();
     final prefs = await SharedPreferences.getInstance();

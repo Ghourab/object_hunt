@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:object_hunt/models/http_exception.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth.dart';
+import '../widgets/user_picker_image.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -19,17 +22,22 @@ class AuthCard extends StatefulWidget {
 class _AuthCardState extends State<AuthCard> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   AuthMode _authMode = AuthMode.Login;
-  Map<String, String> _authData = {
+  Map<String, dynamic> _authData = {
     'email': '',
     'password': '',
     'name': '',
     'dob': '',
+    'image':'',
   };
   var _isLoading = false;
   final _passwordController = TextEditingController();
   TextEditingController dateInput = TextEditingController();
+   File? _userImageFile;
 
-
+  void _pickedImage(File image){
+    _userImageFile=image;
+    _authData['Image']=_userImageFile;
+  }
 
   @override
   void initState() {
@@ -53,9 +61,13 @@ class _AuthCardState extends State<AuthCard> {
   }
 
   Future<void> _submit() async {
-    if (!_formKey.currentState!.validate()) {
+    if (!_formKey.currentState!.validate() ) {
       // Invalid!
       return;
+    }
+    if(_userImageFile == null && _authMode != AuthMode.Login){
+
+      Scaffold.of(context).showSnackBar(SnackBar(backgroundColor:Colors.red, content:Text('Please pick an image.'),),);
     }
     _formKey.currentState!.save();
     setState(() {
@@ -68,11 +80,13 @@ class _AuthCardState extends State<AuthCard> {
             .login(_authData['email']!, _authData['password']!);
       } else {
         // Sign user up
+
         await Provider.of<Auth>(context, listen: false).signup(
           _authData['email']!,
           _authData['password']!,
           _authData['name']!,
           _authData['dob']!,
+          _authData['Image']!,
         );
       }
 
@@ -132,6 +146,8 @@ class _AuthCardState extends State<AuthCard> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                if (_authMode == AuthMode.Signup)
+                UserPickerImage(_pickedImage),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'E-Mail'),
                   keyboardType: TextInputType.emailAddress,

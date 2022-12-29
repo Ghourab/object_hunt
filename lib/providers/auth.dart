@@ -1,8 +1,10 @@
 import'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,15 +33,15 @@ class Auth with ChangeNotifier {
     return null;
   }
 
-  Future<void> signup(String email, String password,String name,String dob) async {
-  return _authenticate(email, password,'signUp',name:name,dob:dob);
+  Future<void> signup(String email, String password,String name,String dob,File image) async {
+  return _authenticate(email, password,'signUp',name:name,dob:dob,image:image);
   }
 
   Future<void> login(String email, String password) async {
    return _authenticate(email, password,'signInWithPassword');
   }
 
-  Future<void> _authenticate(String email,String password, String urlSegment,{String? name,String? dob}) async{
+  Future<void> _authenticate(String email,String password, String urlSegment,{String? name,String? dob,File? image}) async{
      final url =
         Uri.parse('https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=AIzaSyBB_JJRuXI1-1BaTHTYcipDTy44cQps4QY');
     
@@ -71,10 +73,16 @@ class Auth with ChangeNotifier {
     // }
 
      if(urlSegment=='signUp'){
+      final ref = FirebaseStorage.instance.ref().child('user_image').child(_userId! + '.jpg');
+      await ref.putFile(image!).whenComplete(() {});
+
+      final  url= await ref.getDownloadURL();
+
        await FirebaseFirestore.instance.collection('users').doc(_userId).set({
         'username':name,
         'email':email,
         'dob':dob,
+        'image_url':url,
       });
     }
     _autoLogout();

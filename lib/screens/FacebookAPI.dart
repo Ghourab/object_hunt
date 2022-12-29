@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login With Facebook"),
+        title: Text("Object Hunt"),
       ),
       body: Container(
         child: _isLoggedIn

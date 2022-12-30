@@ -18,3 +18,40 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         child: _isLoggedIn
+            ? Column(
+                children: [
+                  Image.network(_userObj["picture"]["data"]["url"]),
+                  Text(_userObj["name"]),
+                  Text(_userObj["email"]),
+                  TextButton(
+                      onPressed: () {
+                        FacebookAuth.instance.logOut().then((value) {
+                          setState(() {
+                            _isLoggedIn = false;
+                            _userObj = {};
+                          });
+                        });
+                      },
+                      child: Text("Logout"))
+                ],
+              )
+            : Center(
+                child: ElevatedButton(
+                  child: Text("Login with Facebook"),
+                  onPressed: () async {
+                    FacebookAuth.instance.login(
+                        permissions: ["public_profile", "email"]).then((value) {
+                      FacebookAuth.instance.getUserData().then((userData) {
+                        setState(() {
+                          _isLoggedIn = true;
+                          _userObj = userData;
+                        });
+                      });
+                    });
+                  },
+                ),
+              ),
+      ),
+    );
+  }
+}

@@ -36,6 +36,9 @@ class _LeaderBoardState extends State<LeaderBoard> {
               style: TextStyle(fontSize: 20),
             ),
             Container(
+              //  margin: EdgeInsets.only(bottom: 150),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.all(20),
               child: SizedBox(
                 height: 300,

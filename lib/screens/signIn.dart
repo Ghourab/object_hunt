@@ -21,7 +21,7 @@ List<User> users=getUsersList();
   
   void startScreen(BuildContext ctx,User value){
   Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
-    return StartScreen(value:value);
+    return StartScreen();
   },),);
 }
   void popScreen(BuildContext ctx){

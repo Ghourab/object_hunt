@@ -14,6 +14,10 @@ import 'package:flutter/services.dart';
 
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await Firebase.initializeApp();
   runApp(MyApp());
 }
@@ -56,14 +60,7 @@ class MyApp extends StatelessWidget {
 
           //home: ArGameScreen(),
   
-          home: auth.isAuth? StartScreen(value: User(
-      name: 'Ahmed Sameh',
-      id: 1,
-      email: 'ahmed@gmail.com',
-      password: 'ahmed22',
-      dob: '06/08/2001',
-      image: 'http://'
-    )): FutureBuilder(future: auth.autoLogin(), builder: (ctx,authResultSnapshot)=> authResultSnapshot.connectionState==ConnectionState.waiting? SplashScreen():AuthScreen(),) ,
+          home: auth.isAuth? StartScreen(): FutureBuilder(future: auth.autoLogin(), builder: (ctx,authResultSnapshot)=> authResultSnapshot.connectionState==ConnectionState.waiting? SplashScreen():AuthScreen(),) ,
           // home: EditProfile(),
         ),
       ),

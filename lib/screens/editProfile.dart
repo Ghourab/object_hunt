@@ -3,19 +3,15 @@ import 'package:flutter/material.dart';
 import '../models/user.dart';
 
 class EditProfile extends StatefulWidget {
-  final User value;
-  const EditProfile({Key? key, required this.value}) : super(key: key);
-  
+  const EditProfile({Key? key}) : super(key: key);
+
   @override
-  _EditProfileState createState() => _EditProfileState(this.value);
+  _EditProfileState createState() => _EditProfileState();
 }
 
 class _EditProfileState extends State<EditProfile> {
-  
   bool showPassword = false;
 
-  User value;
-  _EditProfileState(this.value);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,38 +52,32 @@ class _EditProfileState extends State<EditProfile> {
                         Icons.account_circle,
                         size: 100,
                       )),
-             
                 ],
               ),
             ),
-              buildTextField("Full Name", value.name, false),
-              buildTextField("E-mail", value.email, false),
-              buildTextField("Password", "********", true),
-              buildTextField("Location", "cairo", false),
-               SizedBox(
-                height: 35,
+            buildTextField("Full Name", "ahmed", false),
+            buildTextField("E-mail", "ahmed@gmail.com", false),
+            buildTextField("Password", "********", true),
+            buildTextField("Location", "cairo", false),
+            SizedBox(
+              height: 35,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              OutlinedButton(
+                onPressed: () {},
+                child: Text("CANCEL",
+                    style: TextStyle(
+                        fontSize: 14, letterSpacing: 2.2, color: Colors.black)),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:[
-                  OutlinedButton(onPressed: () {},
-                    child: Text("CANCEL",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
-                  ),
-                  ElevatedButton(onPressed: () {},
-                    child: Text(
-                      "SAVE",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
-                    ),
-                  )
-                ]
-              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  "SAVE",
+                  style: TextStyle(
+                      fontSize: 14, letterSpacing: 2.2, color: Colors.white),
+                ),
+              )
+            ]),
           ],
         ),
       ),
@@ -107,7 +97,7 @@ class _EditProfileState extends State<EditProfile> {
                       print(placeholder);
                       setState(() {
                         showPassword = !showPassword;
-                        placeholder = value.password;
+                        placeholder = "****************";
                         print(placeholder);
                       });
                     },

@@ -3,10 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import '../providers/auth.dart';
 import '../screens/editProfile.dart';
-
+import '../screens/settings_page.dart';
 
 class Menu extends StatelessWidget {
-
   const Menu({Key? key}) : super(key: key);
 
   void editProfileScreen(BuildContext ctx) {
@@ -18,6 +17,7 @@ class Menu extends StatelessWidget {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -27,9 +27,7 @@ class Menu extends StatelessWidget {
           height: 100,
           child: Expanded(
             child: Container(
-
-              color: Colors.teal[200],
-              child: Center(child: Text('Menu'))),
+                color: Colors.teal[200], child: Center(child: Text('Menu'))),
           ),
         ),
         ListTile(
@@ -38,6 +36,7 @@ class Menu extends StatelessWidget {
         ),
         ListTile(
           title: Text('Settings'),
+          onTap: () => Settings_Page(),
         ),
         ListTile(
           leading: Icon(Icons.exit_to_app),

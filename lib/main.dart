@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '/providers/auth.dart';
 import '../screens/splash_screen.dart';
+import '../screens/settings_page.dart';
 import '../screens/startScreen.dart';
 import 'models/user.dart';
 import 'screens/auth_screen.dart';
@@ -12,7 +13,7 @@ import 'screens/auth_screen.dart';
 // import './screens/editProfile.dart';
 import 'package:flutter/services.dart';
 
-Future main() async{
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -59,8 +60,17 @@ class MyApp extends StatelessWidget {
           ),
 
           //home: ArGameScreen(),
-  
-          home: auth.isAuth? StartScreen(): FutureBuilder(future: auth.autoLogin(), builder: (ctx,authResultSnapshot)=> authResultSnapshot.connectionState==ConnectionState.waiting? SplashScreen():AuthScreen(),) ,
+
+          home: auth.isAuth
+              ? StartScreen()
+              : FutureBuilder(
+                  future: auth.autoLogin(),
+                  builder: (ctx, authResultSnapshot) =>
+                      authResultSnapshot.connectionState ==
+                              ConnectionState.waiting
+                          ? SplashScreen()
+                          : AuthScreen(),
+                ),
           // home: EditProfile(),
         ),
       ),

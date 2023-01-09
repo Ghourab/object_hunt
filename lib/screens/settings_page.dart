@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,21 +12,21 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: MyHomePage(title: 'Object hunt'),
+      home: settingspage(title: 'Object hunt'),
     );
     home:
-    MyHomePage(title: 'Object hunt');
+    settingspage(title: 'Object hunt');
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class settingspage extends StatefulWidget {
+  settingspage({Key? key, required this.title}) : super(key: key);
   final String title;
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _settingspageState createState() => _settingspageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _settingspageState extends State<settingspage> {
   bool isSwitched = false;
   @override
   Widget build(BuildContext context) {

@@ -152,7 +152,4 @@ void _handleOnPlaneTap(List<ArCoreHitTestResult> hits) {
     // arCoreController?.addArCoreNode(moon);
   }
 
-  
-
-
 }

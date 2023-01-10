@@ -32,6 +32,7 @@ dependencies:
   settings_ui: ^1.0.0
   google_sign_in: ^5.4.2
   emoji_feedback: ^0.1.0
+  flutter_facebook_auth: ^5.0.7
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

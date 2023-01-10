@@ -2,8 +2,7 @@
     package="com.objecthuntt.object_hunt">
     <uses-permission android:exported="true"
     android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.CAMERA" /><uses-permission android:name="android.permission.INTERNET" />
 
    <application
         android:label="Object Hunt"
@@ -33,6 +32,14 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
+            <meta-data 
+              android:name="com.facebook.sdk.ApplicationId"
+              android:value="@string/facebook_app_id"/>
+
+            <meta-data 
+              android:name="com.facebook.sdk.ClientToken" 
+              android:value="@string/facebook_client_token"/>
+
             <intent-filter android:exported="true">
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

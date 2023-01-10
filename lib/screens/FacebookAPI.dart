@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Facebook API"),
+        title: Text("Login with Facebook"),
       ),
       body: Container(
         child: _isLoggedIn

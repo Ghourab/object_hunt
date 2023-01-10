@@ -20,7 +20,6 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       print("salah");
-      print("secoundSalah");
       appBar: AppBar(
         title: Text('Object Hunt'),
       ),

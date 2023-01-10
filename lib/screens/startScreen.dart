@@ -104,7 +104,7 @@ class _StartScreenState extends State<StartScreen> {
                         style: TextStyle(
                             fontSize: 19.5,
                             color: Color.fromARGB(255, 255, 255, 255)),
-                      ))
+                      )),
                 ],
               ),
             ],

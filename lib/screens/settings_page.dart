@@ -1,38 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-class MyApp extends StatelessWidget {
+class Settingspage extends StatefulWidget {
+  Settingspage({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Object hunt',
-      theme: ThemeData(
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      home: settingspage(title: 'Object hunt'),
-    );
-    home:
-    settingspage(title: 'Object hunt');
-  }
+  _SettingspageState createState() => _SettingspageState();
 }
 
-class settingspage extends StatefulWidget {
-  settingspage({Key? key, required this.title}) : super(key: key);
-  final String title;
-  @override
-  _settingspageState createState() => _settingspageState();
-}
-
-class _settingspageState extends State<settingspage> {
+class _SettingspageState extends State<Settingspage> {
   bool isSwitched = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Settings"),
       ),
       body: SettingsList(
         sections: [

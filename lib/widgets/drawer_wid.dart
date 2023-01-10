@@ -4,6 +4,7 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import '../providers/auth.dart';
 import '../screens/editProfile.dart';
 import '../screens/settings_page.dart';
+import '../screens/ratinggame.dart';
 
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);
@@ -36,8 +37,13 @@ class Menu extends StatelessWidget {
         ),
         ListTile(
           title: Text('Settings'),
-          onTap: () => Settings_Page(),
+          onTap: () => Settingspage(),
         ),
+
+        // ListTile(
+        //   title: Text('Rating'),
+        //   onTap: () => EmojiFeedback(),
+        // ),
         ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('Logout'),

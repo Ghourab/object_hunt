@@ -39,11 +39,10 @@ class Menu extends StatelessWidget {
           title: Text('Settings'),
           onTap: () => Settingspage(),
         ),
-
-        // ListTile(
-        //   title: Text('Rating'),
-        //   onTap: () => EmojiFeedback(),
-        // ),
+        ListTile(
+          title: Text('Rating'),
+          onTap: () => Ratinggame(),
+        ),
         ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('Logout'),

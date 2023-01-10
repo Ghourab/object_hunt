@@ -21,9 +21,18 @@ class Auth with ChangeNotifier {
 
   bool get isAuth{
     //if token != to null isAuth = true
+    print(token);
     return token!=null;
 
   }
+ Future<Object> getUser() async {
+    // return await FirebaseFirestore.instance.collection('users').doc(_userId).get();
+    
+    final DocumentSnapshot documentSnapshot =
+        await FirebaseFirestore.instance.collection('users').doc(_userId).get();
+    return documentSnapshot;
+  }
+
 
 
   String? get token{
@@ -34,13 +43,53 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> signup(String email, String password,String name,String dob,File image) async {
+    notifyListeners();
   return _authenticate(email, password,'signUp',name:name,dob:dob,image:image);
   }
 
   Future<void> login(String email, String password) async {
+
    return _authenticate(email, password,'signInWithPassword');
   }
 
+  Future<void> editUser(String email,String password) async{
+     final url =
+        Uri.parse('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBB_JJRuXI1-1BaTHTYcipDTy44cQps4QY');
+        try {
+      final response = await http.post(
+      url,
+      body: json.encode(
+        {
+          'email': email,
+          'password': password,
+          'returnSecureToken': true,
+        },
+      ),
+    );
+    final responseData =json.decode(response.body);
+    if(responseData['error']!=null){
+      throw HttpException(responseData['error']['message']);
+    }
+  }catch(e){throw e;}
+  }
+Future<void> viewData() async{
+     final url =
+        Uri.parse('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBB_JJRuXI1-1BaTHTYcipDTy44cQps4QY');
+        try {
+      final response = await http.post(
+      url,
+      
+    );
+    final responseData =json.decode(response.body);
+    
+    if(responseData['error']!=null){
+      throw HttpException(responseData['error']['message']);
+    }
+    return responseData;
+  }catch(e){throw e;}
+  }
+
+  
   Future<void> _authenticate(String email,String password, String urlSegment,{String? name,String? dob,File? image}) async{
      final url =
         Uri.parse('https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=AIzaSyBB_JJRuXI1-1BaTHTYcipDTy44cQps4QY');

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
-import '../models/user.dart';
-import '../providers/auth.dart';
 import '../screens/editProfile.dart';
 import '../screens/instructionsScreen.dart';
 import '../screens/leaderBoardScreen.dart';
 import '../widgets/drawer_wid.dart';
-import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);

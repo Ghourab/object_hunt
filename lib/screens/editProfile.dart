@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:object_hunt/providers/user_provider.dart';
 
-import '../models/user.dart';
-
-class EditProfile extends StatefulWidget {
+class EditProfile extends ConsumerStatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
 
   @override
-  _EditProfileState createState() => _EditProfileState();
+  ConsumerState<EditProfile> createState() => _EditProfileState();
 }
 
-class _EditProfileState extends State<EditProfile> {
+class _EditProfileState extends ConsumerState<EditProfile> {
   bool showPassword = false;
+  TextEditingController name= TextEditingController();
+  TextEditingController email= TextEditingController();
+
+
+
 
   @override
   Widget build(BuildContext context) {
+    final data=ref.watch(userDataProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text('Object Hunt'),
       ),
-      body: Container(
+      body: data.when( data: (doc) {
+      name.text=doc.get('username');
+      email.text=doc.get('email');
+    
+        return Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
         child: ListView(
           children: [
@@ -55,10 +65,10 @@ class _EditProfileState extends State<EditProfile> {
                 ],
               ),
             ),
-            buildTextField("Full Name", "ahmed", false),
-            buildTextField("E-mail", "ahmed@gmail.com", false),
-            buildTextField("Password", "********", true),
-            buildTextField("Location", "cairo", false),
+            buildTextField("Full Name", name, false),
+            buildTextField("E-mail",name, false),
+            buildTextField("Password",name, true),
+            buildTextField("Location",name, false),
             SizedBox(
               height: 35,
             ),
@@ -80,25 +90,28 @@ class _EditProfileState extends State<EditProfile> {
             ]),
           ],
         ),
-      ),
+      );
+      }, loading:()=> Center(child: CircularProgressIndicator()),
+      error: (stacktrace, context)=>Text('Shihab'),), 
     );
   }
 
   Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
+      String labelText,TextEditingController controller, bool isPasswordTextField) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
+        controller: controller,
         obscureText: isPasswordTextField ? showPassword : false,
         decoration: InputDecoration(
             suffixIcon: isPasswordTextField
                 ? IconButton(
                     onPressed: () {
-                      print(placeholder);
+            
                       setState(() {
                         showPassword = !showPassword;
-                        placeholder = "****************";
-                        print(placeholder);
+                        
+                        
                       });
                     },
                     icon: Icon(
@@ -110,7 +123,7 @@ class _EditProfileState extends State<EditProfile> {
             contentPadding: EdgeInsets.only(bottom: 3),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
+            
             hintStyle: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,

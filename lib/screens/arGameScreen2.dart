@@ -23,7 +23,7 @@ class _ArGameScreen2State extends State<ArGameScreen2> {
   Widget build(BuildContext context) {
    return Scaffold(
         appBar: AppBar(
-          title: const Text('Hello World'),
+          title: const Text('Object Hunt'),
         ),
         body: ArCoreView(
 

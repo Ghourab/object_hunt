@@ -19,6 +19,7 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      print("salah");
       appBar: AppBar(
         title: Text('Object Hunt'),
       ),

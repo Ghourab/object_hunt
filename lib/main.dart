@@ -8,6 +8,7 @@ import '../screens/settings_page.dart';
 import '../screens/startScreen.dart';
 import 'models/user.dart';
 import 'screens/auth_screen.dart';
+import 'screens/FacebookAPI.dart';
 
 // import './screens/loadingScreen.dart';
 // import './screens/editProfile.dart';

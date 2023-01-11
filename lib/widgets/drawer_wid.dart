@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../providers/auth.dart';
 import '../screens/editProfile.dart';
-import '../screens/settings_page.dart';
-import '../screens/ratinggame.dart';
 
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);
@@ -35,14 +33,14 @@ class Menu extends StatelessWidget {
           title: Text('Profile'),
           onTap: () => editProfileScreen(context),
         ),
-        ListTile(
-          title: Text('Settings'),
-          onTap: () => Settingspage(),
-        ),
-        ListTile(
-          title: Text('Rating'),
-          onTap: () => Ratinggame(),
-        ),
+        // ListTile(
+        //   title: Text('Settings'),
+        //   onTap: () => Settingspage(),
+        // ),
+        // ListTile(
+        //   title: Text('Rating'),
+        //   onTap: () => Ratinggame(),
+        // ),
         ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('Logout'),

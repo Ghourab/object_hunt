@@ -20,13 +20,16 @@ class _EditProfileState extends ConsumerState<EditProfile> {
   @override
   Widget build(BuildContext context) {
     final data=ref.watch(userDataProvider);
+    // final privateData=ref.watch(userPrivateDataProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Object Hunt'),
       ),
-      body: data.when( data: (doc) {
+      body: data.when( data: (doc) {  
       name.text=doc.get('username');
       email.text=doc.get('email');
+      
     
         return Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),

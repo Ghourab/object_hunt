@@ -28,11 +28,12 @@ dependencies:
   intro_slider: ^2.4.0
   arcore_flutter_plugin: ^0.1.0-null-safety.3
   provider: ^6.0.5
-  google_fonts: ^3.0.1
-  settings_ui: ^1.0.0
-  google_sign_in: ^5.4.3
-  flutter_rating_bar: ^4.0.1
-  flutter_facebook_auth: ^5.0.7
+  # google_fonts: ^3.0.1
+  # settings_ui: ^1.0.0
+  # google_sign_in: ^5.4.3
+  # flutter_rating_bar: ^4.0.1
+  # flutter_facebook_auth: ^5.0.7
+  
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

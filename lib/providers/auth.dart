@@ -29,7 +29,7 @@ class Auth with ChangeNotifier {
     // return await FirebaseFirestore.instance.collection('users').doc(_userId).get();
     
     final DocumentSnapshot documentSnapshot =
-        await FirebaseFirestore.instance.collection('users').doc(_userId).get();
+        await FirebaseFirestore.instance.collection('users').doc('Btsaw9rU1oQb7YyUvV7HHcGoYoq2').get();
     return documentSnapshot;
   }
 

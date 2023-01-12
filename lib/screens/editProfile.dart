@@ -19,7 +19,9 @@ class _EditProfileState extends ConsumerState<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-    final data=ref.watch(userDataProvider);
+   
+    var data=ref.watch(userDataProvider);
+
     // final privateData=ref.watch(userPrivateDataProvider);
 
     return Scaffold(
@@ -69,7 +71,7 @@ class _EditProfileState extends ConsumerState<EditProfile> {
               ),
             ),
             buildTextField("Full Name", name, false),
-            buildTextField("E-mail",name, false),
+            buildTextField("E-mail",email, false),
             buildTextField("Password",name, true),
             buildTextField("Location",name, false),
             SizedBox(
@@ -95,7 +97,7 @@ class _EditProfileState extends ConsumerState<EditProfile> {
         ),
       );
       }, loading:()=> Center(child: CircularProgressIndicator()),
-      error: (stacktrace, context)=>Text('Shihab'),), 
+      error: (stacktrace, context)=>Text(stacktrace.toString()),), 
     );
   }
 

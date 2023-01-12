@@ -1,16 +1,17 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:object_hunt/models/http_exception.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' as provider;
 
 import '../providers/auth.dart';
 import '../widgets/user_picker_image.dart';
 
 enum AuthMode { Signup, Login }
 
-class AuthCard extends StatefulWidget {
+class AuthCard extends ConsumerStatefulWidget {
   const AuthCard({
     Key? key,
   }) : super(key: key);
@@ -19,7 +20,7 @@ class AuthCard extends StatefulWidget {
   _AuthCardState createState() => _AuthCardState();
 }
 
-class _AuthCardState extends State<AuthCard> {
+class _AuthCardState extends ConsumerState<AuthCard> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   AuthMode _authMode = AuthMode.Login;
   Map<String, dynamic> _authData = {
@@ -60,14 +61,14 @@ class _AuthCardState extends State<AuthCard> {
     );
   }
 
-  Future<void> _submit() async {
+  Future<void> _submit(WidgetRef ref) async {
     if (!_formKey.currentState!.validate() ) {
       // Invalid!
       return;
     }
     if(_userImageFile == null && _authMode != AuthMode.Login){
 
-      Scaffold.of(context).showSnackBar(SnackBar(backgroundColor:Colors.red, content:Text('Please pick an image.'),),);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor:Colors.red, content:Text('Please pick an image.'),),);
     }
     _formKey.currentState!.save();
     setState(() {
@@ -76,18 +77,23 @@ class _AuthCardState extends State<AuthCard> {
     try {
       if (_authMode == AuthMode.Login) {
         // Log user in
-        await Provider.of<Auth>(context, listen: false)
-            .login(_authData['email']!, _authData['password']!);
+        await provider.Provider.of<Auth>(context, listen: false)
+            .login(ref,_authData['email']!, _authData['password']!);
       } else {
         // Sign user up
-
-        await Provider.of<Auth>(context, listen: false).signup(
+      print(_authData);
+        await provider.Provider.of<Auth>(context, listen: false).signup(
           _authData['email']!,
           _authData['password']!,
           _authData['name']!,
           _authData['dob']!,
           _authData['Image']!,
         );
+        print(_authMode);
+        setState(() {
+          _authMode= AuthMode.Login;
+        });
+        
       }
 
       // specific type of error
@@ -108,7 +114,7 @@ class _AuthCardState extends State<AuthCard> {
     } catch (error) {
       const errorMessage =
           'Could not authenticate you. please try again later.';
-      throw error;
+  
     }
     setState(() {
       _isLoading = false;
@@ -250,7 +256,7 @@ class _AuthCardState extends State<AuthCard> {
                   ElevatedButton(
                     child:
                         Text(_authMode == AuthMode.Login ? 'LOGIN' : 'SIGN UP'),
-                    onPressed: _submit,
+                    onPressed: ()=>_submit(ref),
                     
                   ),
                 TextButton(

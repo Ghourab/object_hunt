@@ -5,6 +5,7 @@ import '../providers/auth.dart';
 import '../screens/editProfile.dart';
 import '../screens/ratinggame.dart';
 import '../screens/settings_page.dart';
+import '../screens/BV.dart';
 
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);
@@ -39,6 +40,16 @@ class Menu extends StatelessWidget {
     );
   }
 
+  void gameVolume(BuildContext ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        builder: (_) {
+          return Volume();
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -58,6 +69,10 @@ class Menu extends StatelessWidget {
         ListTile(
           title: Text('Settings'),
           onTap: () => settingsGame(context),
+        ),
+        ListTile(
+          title: Text('Volume'),
+          onTap: () => gameVolume(context),
         ),
         ListTile(
           title: Text('Rating'),

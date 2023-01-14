@@ -31,7 +31,7 @@ dependencies:
   # google_fonts: ^3.0.1
   # settings_ui: ^1.0.0
   # google_sign_in: ^5.4.3
-  # flutter_rating_bar: ^4.0.1
+  flutter_rating_bar: ^4.0.1
   # flutter_facebook_auth: ^5.0.7
   
 
@@ -48,6 +48,7 @@ dependencies:
   flutter_riverpod: ^1.0.3+1
   firebase_auth: ^4.2.5
   firebase_core: ^2.2.0
+  settings_ui: ^2.0.2
 
   
 

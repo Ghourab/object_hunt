@@ -80,6 +80,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart' as provider;
+import 'package:flame_audio/flame_audio.dart';
 
 import '/providers/auth.dart';
 import '../screens/splash_screen.dart';
@@ -92,8 +93,15 @@ Future main() async {
   //   DeviceOrientation.portraitUp,
   //   DeviceOrientation.portraitDown,
   // ]);
+
   await Firebase.initializeApp();
   runApp(ProviderScope(child: MyApp()));
+  bool musicPlaying = false;
+  FlameAudio.bgm.initialize();
+  if (!musicPlaying) {
+    FlameAudio.bgm.play('music.mp3');
+    musicPlaying = true;
+  }
 }
 
 class MyApp extends StatelessWidget {

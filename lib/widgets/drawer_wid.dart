@@ -19,6 +19,26 @@ class Menu extends StatelessWidget {
     );
   }
 
+  void ratingsScreen(BuildContext ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        builder: (_) {
+          return Ratinggame();
+        },
+      ),
+    );
+  }
+
+  void settingsGame(BuildContext ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        builder: (_) {
+          return SettingsPage();
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -35,13 +55,13 @@ class Menu extends StatelessWidget {
           title: Text('Profile'),
           onTap: () => editProfileScreen(context),
         ),
-        // ListTile(
-        //   title: Text('Settings'),
-        //   onTap: () => Settingspage(),
-        // ),
+        ListTile(
+          title: Text('Settings'),
+          onTap: () => settingsGame(context),
+        ),
         ListTile(
           title: Text('Rating'),
-          onTap: () => Ratinggame(),
+          onTap: () => ratingsScreen(context),
         ),
         ListTile(
           leading: Icon(Icons.exit_to_app),

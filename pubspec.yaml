@@ -49,6 +49,7 @@ dependencies:
   firebase_auth: ^4.2.5
   firebase_core: ^2.2.0
   settings_ui: ^2.0.2
+  flame_audio: ^1.3.5
 
   
 
@@ -94,6 +95,7 @@ flutter:
     - assets/images/worried.png
     - assets/images/worried_big.png
     - assets/images/
+    - assets/audio/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

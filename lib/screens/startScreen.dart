@@ -5,6 +5,7 @@ import '../screens/editProfile.dart';
 import '../screens/instructionsScreen.dart';
 import '../screens/leaderBoardScreen.dart';
 import '../widgets/drawer_wid.dart';
+// import '../widgets/darkmode.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
@@ -61,6 +62,7 @@ class _StartScreenState extends State<StartScreen> {
           backgroundColor: Colors.teal[200],
           centerTitle: true,
           title: const Text('Welcome to Object Hunt'),
+          actions: [Switch(value: false, onChanged: (MyThemes) {})],
         ),
         body: Container(
           margin: EdgeInsets.only(bottom: 150),

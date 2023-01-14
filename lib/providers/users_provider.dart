@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../models/user.dart';
 class Users_provider with ChangeNotifier{
   List<User> _items= [User(
-      name: 'Ahmed Sameh',
-      id: 1,
+      username: 'Ahmed Sameh',
+     
       email: 'ahmed@gmail.com',
-      password: 'ahmed22',
+    
       dob: '06/08/2001',
       image: 'http://'
     )];

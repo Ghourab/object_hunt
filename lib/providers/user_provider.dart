@@ -1,16 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'auth.dart';
+import '../models/user.dart';
 
-Future userData = Auth().getUser();
+// Future userData = Auth().getUser();
 
- var userDataProviderRepository = StateProvider<Future>((ref) => userData);
+//  var userDataProviderRepository = StateProvider<Future>((ref) => userData);
 
- var userDataProvider = FutureProvider(
-  (ref) async {
-    return ref.watch(userDataProviderRepository);
-  },
-);
+//  var userDataProvider = FutureProvider(
+//   (ref) async {
+//     return ref.watch(userDataProviderRepository);
+//   },
+// );
 
 // Future userPrivateData = Auth().viewData();
 // final userPrivateDataProviderRepository = StateProvider<Future>((ref) => userPrivateData);
@@ -20,3 +20,7 @@ Future userData = Auth().getUser();
 //     return ref.watch(userPrivateDataProviderRepository);
 //   },
 // );
+
+final newUserDataProivder = StateProvider<Users?>((ref) {
+  return null;
+});

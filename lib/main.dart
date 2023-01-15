@@ -104,9 +104,9 @@ Future main() async {
   }
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return provider.MultiProvider(
       providers: [
         provider.ChangeNotifierProvider.value(
@@ -144,7 +144,7 @@ class MyApp extends StatelessWidget {
           home: auth.isAuth
               ? StartScreen()
               : FutureBuilder(
-                  future: auth.autoLogin(),
+                  future: auth.autoLogin(ref),
                   builder: (ctx, authResultSnapshot) =>
                       authResultSnapshot.connectionState ==
                               ConnectionState.waiting

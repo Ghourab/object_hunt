@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/user.dart';
 class Users_provider with ChangeNotifier{
-  List<User> _items= [User(
+  List<Users> _items= [Users(
       username: 'Ahmed Sameh',
      
       email: 'ahmed@gmail.com',
@@ -11,7 +11,7 @@ class Users_provider with ChangeNotifier{
       image: 'http://'
     )];
 
-  List<User> get items{
+  List<Users> get items{
     //copy of the list cause I don't want to change the list
     return [..._items];
   }

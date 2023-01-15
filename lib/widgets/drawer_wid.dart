@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth.dart';
+import '../screens/Volume.dart';
 import '../screens/editProfile.dart';
 import '../screens/ratinggame.dart';
 import '../screens/settings_page.dart';
-import '../screens/BV.dart';
+
 
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);
 
-  void editProfileScreen(BuildContext ctx) {
-    Navigator.of(ctx).push(
+  void editProfileScreen(BuildContext ctx) async{
+    await Navigator.of(ctx).push(
       MaterialPageRoute(
         builder: (_) {
           return EditProfile();

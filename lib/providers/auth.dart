@@ -9,10 +9,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:object_hunt/data/user_management.dart';
 import 'package:object_hunt/providers/user_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/http_exception.dart';
+import '../models/user.dart';
 
 
 
@@ -21,16 +23,17 @@ class Auth with ChangeNotifier {
   DateTime? _expiryDate;
   String? _userId;
   Timer? _authTimer;
-
+  UserManager? manager;
+  
   bool get isAuth{
     //if token != to null isAuth = true
     return token!=null;
 
   }
- Future<Object> getUser() async {
+ Future<DocumentSnapshot> getUser() async {
     // return await FirebaseFirestore.instance.collection('users').doc(_userId).get();
 
-    final  user =  FirebaseAuth.instance.currentUser!;
+    final  user = FirebaseAuth.instance.currentUser!;
 
     String id=user.uid;
     print(id);
@@ -49,6 +52,7 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> signup(String email, String password,String name,String dob,File image) async {
+    
  
   return _authenticate(email, password,'signUp',name:name,dob:dob,image:image);
   }
@@ -60,31 +64,34 @@ class Auth with ChangeNotifier {
           email: email.trim(),
           password: password.trim(),
         );
-        ref.read(userDataProviderRepository.notifier).state=Auth().getUser();
+        // ref.read(userDataProviderRepository.notifier).state=Auth().getUser();
+        Auth().getUser().then((value) {
+        Users user = Users.fromSnapshot(value);
+        ref.read(newUserDataProivder.notifier).state = user;
+      });
         
             return _authenticate(email, password,'signInWithPassword');
   }
   
 
-  Future<void> editUser(String email,String password) async{
-     final url =
-        Uri.parse('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBB_JJRuXI1-1BaTHTYcipDTy44cQps4QY');
-        try {
-      final response = await http.post(
-      url,
-      body: json.encode(
-        {
-          'email': email,
-          'password': password,
-          'returnSecureToken': true,
-        },
-      ),
-    );
-    final responseData =json.decode(response.body);
-    if(responseData['error']!=null){
-      throw HttpException(responseData['error']['message']);
-    }
-  }catch(e){throw e;}
+  Future<void> editUser(WidgetRef ref,String userId,String email, String password,String name,String dob,File image) async{
+
+      final refr = FirebaseStorage.instance.ref().child('user_image').child(userId + '.jpg');
+
+   
+        await refr.putFile(image).whenComplete((){});
+
+    
+      final  url= await refr.getDownloadURL();
+      await manager!.editUser(userId, name, email, dob, url);
+                     FirebaseAuth.instance.currentUser!.updateEmail(email);
+                     FirebaseAuth.instance.currentUser!.updatePassword(password);
+           
+   var editedData=ref.read(newUserDataProivder.notifier).state;
+    editedData!.username=name;
+    editedData.email=email;
+    editedData.dob=dob;
+    editedData.image=url;
   }
 Future<String> getUserId(String token) async{
      final url =
@@ -141,10 +148,15 @@ Future<String> getUserId(String token) async{
 
      if(urlSegment=='signUp'){
       final ref = FirebaseStorage.instance.ref().child('user_image').child(_userId! + '.jpg');
+
       await ref.putFile(image!).whenComplete(() {});
 
       final  url= await ref.getDownloadURL();
-
+      print(_userId);
+      print(name);
+      print(email);
+      print(dob);
+      print(url);
        await FirebaseFirestore.instance.collection('users').doc(_userId).set({
         'username':name,
         'email':email,
@@ -152,6 +164,7 @@ Future<String> getUserId(String token) async{
         'image_url':url,
       });
     }
+    
     _autoLogout();
 
     if(urlSegment!='signUp'){
@@ -196,8 +209,10 @@ Future<String> getUserId(String token) async{
 
   }
 
-  Future<bool?> autoLogin() async{
+  Future<bool?> autoLogin(WidgetRef ref) async{
     final prefs= await SharedPreferences.getInstance();
+     
+        
     if(!prefs.containsKey('userData')){
       return false;
     }
@@ -210,6 +225,10 @@ Future<String> getUserId(String token) async{
     _token=extractedUserData['token'];
     _userId=extractedUserData['userId'];
     _expiryDate=expiryDate;
+    Auth().getUser().then((value) {
+        Users user = Users.fromSnapshot(value);
+        ref.read(newUserDataProivder.notifier).state = user;
+      });
     notifyListeners();
     _autoLogout();
     return true;

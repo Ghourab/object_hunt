@@ -1,7 +1,6 @@
 import 'package:object_hunt/models/api_model.dart';
 
 import 'package:flutter/material.dart';
-import '../models/api_model.dart';
 import '../services/api_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -35,13 +34,12 @@ class _APiState extends State<APi> {
     var url = posts[index].openGiveawayUrl.toString();
     print(url);
     final uri = Uri.parse(url);
-    
+
     await launchUrl(uri);
-    
+
     setState(() {
       isLoaded = true;
     });
-  
   }
 
   @override
@@ -59,15 +57,40 @@ class _APiState extends State<APi> {
         child: ListView.builder(
           itemCount: posts.length,
           itemBuilder: (context, index) {
-            return Card(
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: Image.network(posts[index].image.toString()),
-                    title: Text(posts[index].title.toString()),
-                    onTap: () => _launchURL(index),
-                  ),
-                ],
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Card(
+                elevation: 5,
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      child: Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.network(posts[index].image.toString()),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              posts[index].title.toString(),
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(posts[index].worth.toString()),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(posts[index].description.toString()),
+                          )
+                        ],
+                      )),
+                      onTap: () => _launchURL(index),
+                    ),
+                  ],
+                ),
               ),
             );
           },

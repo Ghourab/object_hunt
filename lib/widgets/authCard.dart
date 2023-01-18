@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -158,7 +159,7 @@ class _AuthCardState extends ConsumerState<AuthCard> {
                   decoration: InputDecoration(labelText: 'E-Mail'),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
-                    if (value!.isEmpty || !value.contains('@')) {
+                    if (value!.isEmpty || !EmailValidator.validate(value)) {
                       return 'Invalid email!';
                     }
                     return null;
@@ -218,10 +219,10 @@ class _AuthCardState extends ConsumerState<AuthCard> {
                     onTap: () async {
                       DateTime? pickedDate = await showDatePicker(
                           context: context,
-                          initialDate: DateTime.now(),
+                          initialDate: DateTime(2011,12,31),
                           firstDate: DateTime(1950),
                           //DateTime.now() - not to allow to choose before today.
-                          lastDate: DateTime.now());
+                          lastDate: DateTime(2011,12,31));
 
                       if (pickedDate != null) {
                         print(

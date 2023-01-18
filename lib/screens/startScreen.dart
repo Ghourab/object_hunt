@@ -1,20 +1,26 @@
+import 'package:animate_gradient/animate_gradient.dart';
+import 'package:animated_icon_button/animated_icon_button.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:appbar_animated/appbar_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../providers/user_provider.dart';
 import '../screens/editProfile.dart';
 import '../screens/instructionsScreen.dart';
 import '../screens/leaderBoardScreen.dart';
 import '../widgets/drawer_wid.dart';
 // import '../widgets/darkmode.dart';
 
-class StartScreen extends StatefulWidget {
+class StartScreen extends ConsumerStatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
 
   @override
-  State<StartScreen> createState() => _StartScreenState();
+  ConsumerState<StartScreen> createState() => _StartScreenState();
 }
 
-class _StartScreenState extends State<StartScreen> {
+class _StartScreenState extends ConsumerState<StartScreen> {
   void instructionScreen(BuildContext ctx) {
     Navigator.of(ctx).push(
       MaterialPageRoute(
@@ -46,70 +52,157 @@ class _StartScreenState extends State<StartScreen> {
   }
 
   final _advancedDrawerController = AdvancedDrawerController();
+
   @override
   Widget build(BuildContext context) {
+      final data=ref.watch(newUserDataProivder);
     return AdvancedDrawer(
       backdropColor: Colors.blueGrey,
       controller: _advancedDrawerController,
       drawer: Menu(),
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () => _advancedDrawerController.toggleDrawer(),
-          ),
-          backgroundColor: Colors.teal[200],
-          centerTitle: true,
-          title: const Text('Welcome to Object Hunt'),
-          actions: [Switch(value: false, onChanged: (MyThemes) {})],
+       
+        // AppBar(
+        //   leading: IconButton(
+        //     icon: Icon(Icons.menu),
+        //     onPressed: () => _advancedDrawerController.toggleDrawer(),
+        //   ),
+        //   backgroundColor: Colors.teal[200],
+        //   centerTitle: true,
+        //   title: const Text('Welcome to Object Hunt'),
+        //   actions: [Switch(value: false, onChanged: (MyThemes) {})],
+        // ),
+        body:AnimateGradient(
+        primaryBegin: Alignment.topLeft,
+        primaryEnd: Alignment.bottomLeft,
+        secondaryBegin: Alignment.bottomLeft,
+        secondaryEnd: Alignment.topRight,
+        primaryColors: const [
+          Colors.red,
+          Colors.redAccent,
+          Colors.white,
+        ],
+        secondaryColors: const [
+          Colors.white,
+          Colors.redAccent,
+          Colors.red,
+        ],
+        child:  ScaffoldLayoutBuilder(
+          backgroundColorAppBar:
+            const ColorBuilder(Colors.transparent, Colors.red),
+        textColorAppBar: const ColorBuilder(Colors.white),
+        appBarBuilder: _appBar,
+          child: SingleChildScrollView(
+            
+             
+                  child:Stack(
+                    children: [
+                      Container(color: Colors.black,
+                        width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.4,
+                        child: Center(
+                            
+        child: Column(
+          children: [
+            SizedBox(height: 30,),
+            AnimatedIconButton(
+              size: 100,
+              onPressed: () {},
+              duration: const Duration(milliseconds: 500),
+              splashColor: Colors.transparent,
+              icons: const <AnimatedIconItem>[
+                AnimatedIconItem(
+                  icon: Icon(Icons.circle_rounded, color: Colors.red,),
+                ),
+                AnimatedIconItem(
+                  icon: Icon(Icons.hide_source, color: Colors.red),
+                ),
+              ],
+            ),
+            
+          
+           DefaultTextStyle(
+             style: const TextStyle(
+               fontSize: 30.0,
+               fontFamily: 'Agne',
+             ),
+             child: AnimatedTextKit(
+               animatedTexts: [
+                 TypewriterAnimatedText('Hi '+data!.username+'!'),
+                
+               ],
+               onTap: () {
+                 print("Tap Event");
+               },
+             ),
+           ),
+          ],
         ),
-        body: Container(
-          margin: EdgeInsets.only(bottom: 150),
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: ListView(
-            children: [
-              Image.asset(
-                'assets/images/Logo_final_removebg2.png',
-                height: MediaQuery.of(context).size.height / 2,
-                width: MediaQuery.of(context).size.width,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: ElevatedButton(
-                      onPressed: () => instructionScreen(context),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.teal[200],
+        // AnimatedIconButton
+      ),
                       ),
-                      child: const Text(
-                        'Start',
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                      ),
-                    ),
+              
+        
+             
+              Padding(
+                padding: const EdgeInsets.fromLTRB(130.0,200,100,0),
+                child: Container(
+                  child: Column(children: [SizedBox(height: 100,),ElevatedButton(onPressed: ()=>instructionScreen(context), child: Text('Play Game'),style: ElevatedButton.styleFrom(backgroundColor: Colors.black)),ElevatedButton(onPressed: ()=>leaderBoardScreen(context), child: Text('Score Board'),style: ElevatedButton.styleFrom(backgroundColor: Colors.black)),]),
+                  margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.36,
                   ),
-                  ElevatedButton(
-                      onPressed: () => leaderBoardScreen(context),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 132, 38, 190),
-                      ),
-                      child: const Text(
-                        'Score',
-                        style: TextStyle(
-                            fontSize: 19.5,
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                      )),
-                ],
+                  height: 450,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(40),
+                    ),
+                    
+                  ),
+                ),
               ),
-            ],
+         
+  
+
+                   
+                    ],
+                  ),
+              
+              ),
+          
+          ),
+      ), 
+        
+        
+        
+        
+       
+        ),
+      
+    );
+  }
+  Widget _appBar(BuildContext context, ColorAnimated colorAnimated) {
+    return AppBar(
+      backgroundColor: colorAnimated.background,
+      elevation: 0,
+      title: Padding(
+        padding: const EdgeInsets.fromLTRB(0,0,50,0),
+        child: Center(
+          child: Text(
+            "Object Hunt",
+            style: TextStyle(
+              color: colorAnimated.color,
+            ),
           ),
         ),
       ),
+      leading: IconButton(
+          onPressed: ()=>_advancedDrawerController.toggleDrawer(),
+        icon:Icon(Icons.menu),
+        color: colorAnimated.color,
+      ),
+      
     );
   }
+
 }

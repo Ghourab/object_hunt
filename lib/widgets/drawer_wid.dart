@@ -68,10 +68,10 @@ class Menu extends StatelessWidget {
       children: [
         SizedBox(
           height: 100,
-          child: Expanded(
+          
             child: Container(
                 color: Colors.teal[200], child: Center(child: Text('Menu'))),
-          ),
+      
         ),
         ListTile(
           title: Text('Profile'),

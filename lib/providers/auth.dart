@@ -59,16 +59,23 @@ class Auth with ChangeNotifier {
 
   Future<void> login(WidgetRef ref,String email, String password) async {
 
-
-   await FirebaseAuth.instance.signInWithEmailAndPassword(
+try{
+ await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email.trim(),
           password: password.trim(),
         );
+}catch(e){}
+         
         // ref.read(userDataProviderRepository.notifier).state=Auth().getUser();
+    if(FirebaseAuth.instance.currentUser != null){
+
         Auth().getUser().then((value) {
         Users user = Users.fromSnapshot(value);
         ref.read(newUserDataProivder.notifier).state = user;
-      });
+ 
+         });
+
+    }
         
             return _authenticate(email, password,'signInWithPassword');
   }

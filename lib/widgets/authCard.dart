@@ -25,11 +25,11 @@ class _AuthCardState extends ConsumerState<AuthCard> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   AuthMode _authMode = AuthMode.Login;
   Map<String, dynamic> _authData = {
-    'Email': '',
-    'Password': '',
-    'Name': '',
+    'email': '',
+    'password': '',
+    'name': '',
     'dob': '',
-    'Image':'',
+    'image':'',
   };
   var _isLoading = false;
   final _passwordController = TextEditingController();

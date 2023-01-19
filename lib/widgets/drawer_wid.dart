@@ -70,7 +70,7 @@ class Menu extends StatelessWidget {
           height: 100,
           
             child: Container(
-                color: Colors.teal[200], child: Center(child: Text('Menu'))),
+                color: Colors.red, child: Center(child: Text('Menu'))),
       
         ),
         ListTile(

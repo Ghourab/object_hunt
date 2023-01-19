@@ -16,7 +16,7 @@ class _ProfileScoreState extends State<ProfileScore> {
           padding: EdgeInsets.only(top: 40),
           height: 330,
           decoration: BoxDecoration(
-              color: Colors.purple[600],
+              color: Colors.black,
               borderRadius: BorderRadius.only(
                 bottomRight: Radius.circular(20),
                 bottomLeft: Radius.circular(20),

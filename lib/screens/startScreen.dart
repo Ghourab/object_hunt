@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../models/user.dart';
 import '../providers/user_provider.dart';
 import '../screens/editProfile.dart';
 import '../screens/instructionsScreen.dart';
@@ -55,9 +56,10 @@ class _StartScreenState extends ConsumerState<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-      final data=ref.watch(newUserDataProivder);
+     Users player=Users(username:'',email: '',image: '',dob: '');
+      final data=ref.watch(newUserDataProivder)??player;
     return AdvancedDrawer(
-      backdropColor: Colors.blueGrey,
+      backdropColor: Colors.black,
       controller: _advancedDrawerController,
       drawer: Menu(),
       child: Scaffold(
@@ -98,9 +100,14 @@ class _StartScreenState extends ConsumerState<StartScreen> {
              
                   child:Stack(
                     children: [
-                      Container(color: Colors.black,
+                      Container(
                         width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.4,
+                decoration: BoxDecoration(
+                  color: Colors.black,borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(40),
+
+                    ), ),
                         child: Center(
                             
         child: Column(
@@ -129,7 +136,7 @@ class _StartScreenState extends ConsumerState<StartScreen> {
              ),
              child: AnimatedTextKit(
                animatedTexts: [
-                 TypewriterAnimatedText('Hi '+data!.username+'!'),
+                 TypewriterAnimatedText('Hi '+data.username+'!'),
                 
                ],
                onTap: () {
@@ -154,6 +161,7 @@ class _StartScreenState extends ConsumerState<StartScreen> {
                   ),
                   height: 450,
                   decoration: const BoxDecoration(
+                    
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(40),
                     ),

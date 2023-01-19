@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../widgets/gridview_leader.dart';
 import '../widgets/listview_leader.dart';
 import '../widgets/profileScore.dart';
@@ -15,7 +16,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal[200],
+        backgroundColor: Colors.red,
         // actions: [
         //   IconButton(onPressed: () {}, icon: Icon(Icons.share)),
         //   IconButton(onPressed: () {}, icon: Icon(Icons.person_add)),

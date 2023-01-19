@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfileScore extends StatefulWidget {
+import '../models/players_highscores.dart';
+import '../providers/players_provider..dart';
+
+class ProfileScore extends ConsumerStatefulWidget {
   const ProfileScore({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScore> createState() => _ProfileScoreState();
+  ConsumerState<ProfileScore> createState() => _ProfileScoreState();
 }
 
-class _ProfileScoreState extends State<ProfileScore> {
+class _ProfileScoreState extends ConsumerState<ProfileScore> {
+  
   @override
   Widget build(BuildContext context) {
+    var choosedPropertyTypeToGetData = ref.watch(getHiderData);
+ 
+return choosedPropertyTypeToGetData.when(data:(data) { 
+var player= PlayersHighscores.fromSnapshot(data.docs[0]) ;
     return LayoutBuilder(
       builder: (ctx, constraints) {
         return Container(
@@ -35,7 +44,7 @@ class _ProfileScoreState extends State<ProfileScore> {
               height: 10,
             ),
             Text(
-              "ahmed sameh",
+              player.hiderName,
               style: TextStyle(
                   fontSize: 22,
                   color: Colors.white,
@@ -75,7 +84,7 @@ class _ProfileScoreState extends State<ProfileScore> {
                 Column(
                   children: [
                     Text(
-                      "#335",
+                      "#1",
                       style: TextStyle(
                         fontSize: 42,
                         fontWeight: FontWeight.w300,
@@ -96,5 +105,8 @@ class _ProfileScoreState extends State<ProfileScore> {
         );
       },
     );
+    
+},loading:()=> Center(child: CircularProgressIndicator()),
+      error: (stacktrace, context)=>Text('Sameh'),);
   }
 }

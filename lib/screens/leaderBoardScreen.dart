@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:object_hunt/models/players_highscores.dart';
 
+import '../providers/players_provider..dart';
 import '../widgets/gridview_leader.dart';
 import '../widgets/listview_leader.dart';
 import '../widgets/profileScore.dart';
 
-class LeaderBoard extends StatefulWidget {
+class LeaderBoard extends ConsumerStatefulWidget {
   const LeaderBoard({Key? key}) : super(key: key);
 
   @override
-  State<LeaderBoard> createState() => _LeaderBoardState();
+  ConsumerState<LeaderBoard> createState() => _LeaderBoardState();
 }
 
-class _LeaderBoardState extends State<LeaderBoard> {
+class _LeaderBoardState extends ConsumerState<LeaderBoard> {
+
+
   @override
   Widget build(BuildContext context) {
+      var choosedPropertyTypeToGetData = ref.watch(getHiderData);
+ 
+return choosedPropertyTypeToGetData.when(data:(data) { 
+var player= PlayersHighscores.fromSnapshot(data.docs[0]) ;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
@@ -22,7 +31,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
         //   IconButton(onPressed: () {}, icon: Icon(Icons.person_add)),
         // ],
         title: Text(
-          "Score Board",
+          'Hider Scoreboard',
           style: TextStyle(fontSize: 29),
         ),
         centerTitle: true,
@@ -60,5 +69,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
         ),
       ),
     );
+    }, loading:()=> Center(child: CircularProgressIndicator()),
+      error: (stacktrace, context)=>Text('Sameh'),);
   }
 }

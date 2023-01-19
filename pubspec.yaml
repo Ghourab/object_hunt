@@ -57,6 +57,7 @@ dependencies:
   animate_gradient: ^0.0.2
   animated_icon_button: ^1.0.2
   animated_text_kit: ^4.2.2
+  random_avatar: ^0.0.7
 
   
 

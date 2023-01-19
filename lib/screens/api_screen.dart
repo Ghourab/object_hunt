@@ -41,13 +41,28 @@ class _APiState extends State<APi> {
       isLoaded = true;
     });
   }
+    _info(int index){
+      showDialog(context: context, builder: (ctx)=> AlertDialog(
+                              title: const Text('Instructions'),
+                              content:
+                                  Text(posts[index].instructions.toString()),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('Ok'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            ),);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Giveaways'),
-        backgroundColor: Colors.teal[200],
+        backgroundColor: Colors.red,
       ),
       body: Visibility(
         visible: isLoaded,
@@ -68,6 +83,10 @@ class _APiState extends State<APi> {
                           child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          IconButton(
+                            icon: const Icon(Icons.info),
+                            onPressed:()=> _info(index)
+                          ),
                           Image.network(posts[index].image.toString()),
                           Padding(
                             padding: const EdgeInsets.all(8.0),

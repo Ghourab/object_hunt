@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../widgets/authCard.dart';
 
-
-
 class AuthScreen extends StatelessWidget {
   static const routeName = '/auth';
 
@@ -19,8 +17,8 @@ class AuthScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color.fromRGBO(215, 117, 255, 1).withOpacity(0.5),
-                  Color.fromRGBO(255, 188, 117, 1).withOpacity(0.9),
+                  Color.fromARGB(255, 158, 60, 60).withOpacity(0.5),
+                  Color.fromARGB(255, 248, 248, 248).withOpacity(0.9),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -57,6 +55,7 @@ class AuthScreen extends StatelessWidget {
                       ),
                       child: Text(
                         'Object Hunt',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 50,
@@ -79,4 +78,3 @@ class AuthScreen extends StatelessWidget {
     );
   }
 }
-

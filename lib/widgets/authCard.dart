@@ -114,7 +114,7 @@ class _AuthCardState extends ConsumerState<AuthCard> {
       _showErrorDialog(errorMessage);
     } catch (error) {
       const errorMessage =
-          'Could not authenticate you. please try again later.';
+          'Could not authenticate you. Please try again later.';
   
     }
     setState(() {

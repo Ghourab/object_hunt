@@ -8,7 +8,6 @@ class Volume extends StatefulWidget {
 
 class _VolumeState extends State<Volume> {
   double _volumeListenerValue = 0;
-  double _getVolume = 0;
   double _setVolumeValue = 0;
 
   @override
@@ -34,6 +33,7 @@ class _VolumeState extends State<Volume> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(' Game Volume '),
+          backgroundColor: Colors.limeAccent,
         ),
         body: Column(
           children: [
@@ -55,19 +55,6 @@ class _VolumeState extends State<Volume> {
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Volume is: $_getVolume'),
-                TextButton(
-                  onPressed: () async {
-                    _getVolume = await VolumeController().getVolume();
-                    setState(() {});
-                  },
-                  child: Text('Get Volume'),
-                ),
-              ],
-            ),
             TextButton(
               onPressed: () => VolumeController().muteVolume(),
               child: Text('Mute Volume'),
@@ -75,17 +62,6 @@ class _VolumeState extends State<Volume> {
             TextButton(
               onPressed: () => VolumeController().maxVolume(),
               child: Text('Max Volume'),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Show system UI:${VolumeController().showSystemUI}'),
-                TextButton(
-                  onPressed: () => setState(() => VolumeController()
-                      .showSystemUI = !VolumeController().showSystemUI),
-                  child: Text('Show/Hide UI'),
-                )
-              ],
             ),
           ],
         ),

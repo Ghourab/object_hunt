@@ -69,7 +69,7 @@ try{
         // ref.read(userDataProviderRepository.notifier).state=Auth().getUser();
     if(FirebaseAuth.instance.currentUser != null){
 
-        Auth().getUser().then((value) {
+       await Auth().getUser().then((value) {
         Users user = Users.fromSnapshot(value);
         ref.read(newUserDataProivder.notifier).state = user;
  

@@ -5,11 +5,11 @@ import 'package:appbar_animated/appbar_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:object_hunt/screens/player_names.dart';
 
 import '../models/user.dart';
 import '../providers/user_provider.dart';
 import '../screens/editProfile.dart';
-import '../screens/instructionsScreen.dart';
 import '../screens/leaderBoardScreen.dart';
 import '../widgets/drawer_wid.dart';
 // import '../widgets/darkmode.dart';
@@ -22,11 +22,11 @@ class StartScreen extends ConsumerStatefulWidget {
 }
 
 class _StartScreenState extends ConsumerState<StartScreen> {
-  void instructionScreen(BuildContext ctx) {
+  void playersScreen(BuildContext ctx) {
     Navigator.of(ctx).push(
       MaterialPageRoute(
         builder: (_) {
-          return InstructionScreen();
+          return Players();
         },
       ),
     );
@@ -155,7 +155,7 @@ class _StartScreenState extends ConsumerState<StartScreen> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(130.0,200,100,0),
                 child: Container(
-                  child: Column(children: [SizedBox(height: 100,),ElevatedButton(onPressed: ()=>instructionScreen(context), child: Text('Play Game'),style: ElevatedButton.styleFrom(backgroundColor: Colors.black)),ElevatedButton(onPressed: ()=>leaderBoardScreen(context), child: Text('Score Board'),style: ElevatedButton.styleFrom(backgroundColor: Colors.black)),]),
+                  child: Column(children: [SizedBox(height: 100,),ElevatedButton(onPressed: ()=>playersScreen(context), child: Text('Play Game'),style: ElevatedButton.styleFrom(backgroundColor: Colors.black)),ElevatedButton(onPressed: ()=>leaderBoardScreen(context), child: Text('Score Board'),style: ElevatedButton.styleFrom(backgroundColor: Colors.black)),]),
                   margin: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height * 0.36,
                   ),

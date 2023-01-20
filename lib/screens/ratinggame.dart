@@ -17,7 +17,9 @@ class _RatinggameState extends State<Ratinggame> {
             child: Column(
           children: [
             //rating face bar
-            const Text('Game Rating'),
+            const Text('Game Rating',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, height: 5, fontSize: 10)),
             RatingBar.builder(
               initialRating: 3,
               itemCount: 5,

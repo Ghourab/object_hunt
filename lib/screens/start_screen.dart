@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:object_hunt/screens/player_names.dart';
+import 'package:object_hunt/screens/seeker_leaderboard_screen.dart';
 
 import '../models/user.dart';
 import '../providers/user_provider.dart';
@@ -47,6 +48,15 @@ class _StartScreenState extends ConsumerState<StartScreen> {
       MaterialPageRoute(
         builder: (_) {
           return LeaderBoardHider();
+        },
+      ),
+    );
+  }
+  void leaderBoardScreen2(BuildContext ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        builder: (_) {
+          return LeaderBoardSeeker();
         },
       ),
     );
@@ -166,7 +176,13 @@ class _StartScreenState extends ConsumerState<StartScreen> {
                                 backgroundColor: Colors.black)),
                         ElevatedButton(
                             onPressed: () => leaderBoardScreen(context),
-                            child: Text('Score Board'),
+                            child: Text('Hiders Score Board'),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black)),
+
+                                ElevatedButton(
+                            onPressed: () => leaderBoardScreen2(context),
+                            child: Text('Seekers Score Board'),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.black)),
                       ]),

@@ -8,16 +8,16 @@ import 'package:random_avatar/random_avatar.dart';
 import '../models/players_highscores.dart';
 import '../providers/players_provider..dart';
 
-class ListViewLeaderHider extends ConsumerWidget {
-  const ListViewLeaderHider({Key? key}) : super(key: key);
+class ListViewLeaderSeeker extends ConsumerWidget {
+  const ListViewLeaderSeeker({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
     
-
-var hiderData = ref.watch(getHiderData);
  
-return hiderData.when(data:(data) { 
+var seekerData = ref.watch(getSeekerData);
+ 
+return seekerData.when(data:(data) { 
 
   
     return Container(
@@ -38,7 +38,7 @@ return hiderData.when(data:(data) {
                               SizedBox(
                                 width: 3,
                               ),
-                              Flexible(child: Text(player.hiderName))
+                              Flexible(child: Text(player.seekerName))
                             ],
                           ),
                           leading: Text(
@@ -46,7 +46,7 @@ return hiderData.when(data:(data) {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           trailing: Text(
-                              "Score: ${player.hiderScore}",
+                              "Score: ${player.seekerScore}",
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         );
                       },

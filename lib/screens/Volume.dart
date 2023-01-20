@@ -29,42 +29,40 @@ class _VolumeState extends State<Volume> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(' Game Volume '),
-          backgroundColor: Colors.limeAccent,
-        ),
-        body: Column(
-          children: [
-            Text('Current volume: $_volumeListenerValue'),
-            Row(
-              children: [
-                Text('Set Volume:'),
-                Flexible(
-                  child: Slider(
-                    min: 0,
-                    max: 1,
-                    onChanged: (double value) {
-                      _setVolumeValue = value;
-                      VolumeController().setVolume(_setVolumeValue);
-                      setState(() {});
-                    },
-                    value: _setVolumeValue,
-                  ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(' Game Volume '),
+        backgroundColor: Colors.red,
+      ),
+      body: Column(
+        children: [
+          Text('Current volume: $_volumeListenerValue'),
+          Row(
+            children: [
+              Text('Set Volume:'),
+              Flexible(
+                child: Slider(
+                  min: 0,
+                  max: 1,
+                  onChanged: (double value) {
+                    _setVolumeValue = value;
+                    VolumeController().setVolume(_setVolumeValue);
+                    setState(() {});
+                  },
+                  value: _setVolumeValue,
                 ),
-              ],
-            ),
-            TextButton(
-              onPressed: () => VolumeController().muteVolume(),
-              child: Text('Mute Volume'),
-            ),
-            TextButton(
-              onPressed: () => VolumeController().maxVolume(),
-              child: Text('Max Volume'),
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          TextButton(
+            onPressed: () => VolumeController().muteVolume(),
+            child: Text('Mute Volume'),
+          ),
+          TextButton(
+            onPressed: () => VolumeController().maxVolume(),
+            child: Text('Max Volume'),
+          ),
+        ],
       ),
     );
   }

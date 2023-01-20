@@ -43,8 +43,6 @@ class MyApp extends ConsumerWidget {
           theme: ref.watch(themeProvider).when(
                 data: (data) => (data == "light")
                     ? ThemeData(
-                        primarySwatch: Colors.blue,
-                        accentColor: Colors.black,
                         fontFamily: 'QuickSand',
                         textTheme: ThemeData.light().textTheme.copyWith(
                               headline6: TextStyle(
@@ -54,18 +52,22 @@ class MyApp extends ConsumerWidget {
                               ),
                             ),
                         appBarTheme: AppBarTheme(
-                          textTheme: ThemeData.light().textTheme.copyWith(
+                          toolbarTextStyle: ThemeData.light().textTheme.copyWith(
                                 headline6: TextStyle(
                                   fontFamily: 'OpenSans',
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
                                 ),
-                              ),
-                        ),
+                              ).bodyText2, titleTextStyle: ThemeData.light().textTheme.copyWith(
+                                headline6: TextStyle(
+                                  fontFamily: 'OpenSans',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ).headline6,
+                        ), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(secondary: Colors.black),
                       )
                     : ThemeData(
-                        primarySwatch: Colors.red,
-                        accentColor: Color.fromARGB(255, 254, 8, 8),
                         fontFamily: 'QuickSand',
                         textTheme: ThemeData.light().textTheme.copyWith(
                               headline6: TextStyle(
@@ -75,18 +77,22 @@ class MyApp extends ConsumerWidget {
                               ),
                             ),
                         appBarTheme: AppBarTheme(
-                          textTheme: ThemeData.light().textTheme.copyWith(
+                          toolbarTextStyle: ThemeData.light().textTheme.copyWith(
                                 headline6: TextStyle(
                                   fontFamily: 'OpenSans',
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
                                 ),
-                              ),
-                        ),
+                              ).bodyText2, titleTextStyle: ThemeData.light().textTheme.copyWith(
+                                headline6: TextStyle(
+                                  fontFamily: 'OpenSans',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ).headline6,
+                        ), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red).copyWith(secondary: Color.fromARGB(255, 254, 8, 8)),
                       ),
                 error: (err, st) => ThemeData(
-                  primarySwatch: Colors.blue,
-                  accentColor: Colors.black,
                   fontFamily: 'QuickSand',
                   textTheme: ThemeData.light().textTheme.copyWith(
                         headline6: TextStyle(
@@ -96,18 +102,22 @@ class MyApp extends ConsumerWidget {
                         ),
                       ),
                   appBarTheme: AppBarTheme(
-                    textTheme: ThemeData.light().textTheme.copyWith(
+                    toolbarTextStyle: ThemeData.light().textTheme.copyWith(
                           headline6: TextStyle(
                             fontFamily: 'OpenSans',
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
-                        ),
-                  ),
+                        ).bodyText2, titleTextStyle: ThemeData.light().textTheme.copyWith(
+                          headline6: TextStyle(
+                            fontFamily: 'OpenSans',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ).headline6,
+                  ), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(secondary: Colors.black),
                 ),
                 loading: () => ThemeData(
-                  primarySwatch: Colors.blue,
-                  accentColor: Colors.black,
                   fontFamily: 'QuickSand',
                   textTheme: ThemeData.light().textTheme.copyWith(
                         headline6: TextStyle(
@@ -117,14 +127,20 @@ class MyApp extends ConsumerWidget {
                         ),
                       ),
                   appBarTheme: AppBarTheme(
-                    textTheme: ThemeData.light().textTheme.copyWith(
+                    toolbarTextStyle: ThemeData.light().textTheme.copyWith(
                           headline6: TextStyle(
                             fontFamily: 'OpenSans',
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
-                        ),
-                  ),
+                        ).bodyText2, titleTextStyle: ThemeData.light().textTheme.copyWith(
+                          headline6: TextStyle(
+                            fontFamily: 'OpenSans',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ).headline6,
+                  ), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(secondary: Colors.black),
                 ),
               ),
 

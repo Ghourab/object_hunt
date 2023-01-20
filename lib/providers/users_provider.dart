@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/user.dart';
-class Users_provider with ChangeNotifier{
+class Usersrovider with ChangeNotifier{
   List<Users> _items= [Users(
       username: 'Ahmed Sameh',
      

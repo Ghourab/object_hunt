@@ -106,7 +106,7 @@ void _editedSuccessfuly(String message) {
     } catch (error) {
       const errorMessage =
           'Could not edit data. please try again later.';
-  
+    _showErrorDialog(errorMessage);
     }
 final refr = FirebaseStorage.instance.ref().child('user_image').child(user.uid + '.jpg');
       print(refr.root);
@@ -139,7 +139,7 @@ final refr = FirebaseStorage.instance.ref().child('user_image').child(user.uid +
     }
 @override
 void initState() {
-    // TODO: implement initState
+
        
     super.initState();
   }
@@ -279,6 +279,7 @@ void initState() {
                       }
                       return null;
                   }
+                  return null;
                   },
                   onSaved: (value) {
                     if(labelText=='E-mail'){

@@ -151,9 +151,7 @@ class _StartScreenState extends ConsumerState<StartScreen> {
                                 TypewriterAnimatedText(
                                     'Hi ' + data.username + '!'),
                               ],
-                              onTap: () {
-                                print("Tap Event");
-                              },
+                          
                             ),
                           ),
                         ],

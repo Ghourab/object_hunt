@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:object_hunt/screens/ready_screen.dart';
-import 'package:vector_math/vector_math_64.dart' as vector;
+import 'package:timer_count_down/timer_count_down.dart';
 
 import '../models/players.dart';
 import '../providers/players_provider..dart';
@@ -94,7 +92,7 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-            title: Text('Winner'),
+            title: Text('Congratulations the winner is '+players.seekerName),
             content: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -133,73 +131,60 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
   var role = 'Hider';
   int seekerScore = 0;
   int hiderScore = 0;
-  bool _isVisible = false;
+
   List<dynamic> locations = [0];
 
-  int timeLeft = 5;
-  int timeLeft2 = 5;
-  void _startCount() {
-    Timer.periodic(Duration(seconds: 5), (timer) {
-      if (timeLeft > 0) {
-        setState(() {
-          //change value of stuff
-          timeLeft--;
-        });
-      } else {
-        timer.cancel();
-        if (role == 'Hider') {
-          showDialog(
-              context: context,
-              builder: (ctx) => AlertDialog(
-                    title: const Text('Switch to Seeker'),
-                    content: Text("Time is Up!!"),
-                    actions: <Widget>[
-                      TextButton(
-                        child: const Text('Ok'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          role = 'Seeker';
-                          readyScreen(context);
-                        },
-                      ),
-                    ],
-                  ));
-        }
-      }
-    });
-  }
 
-  void _startCount2() {
-    Timer.periodic(Duration(seconds: 5), (timer) {
-      if (timeLeft2 > 0) {
-        setState(() {
-          //change value of stuff
-          timeLeft2--;
-        });
-      } else {
-        timer.cancel();
-        _showWinner();
-      }
-    });
-  }
 
   @override
   void initState() {
-    // TODO: implement initState
-    _startCount();
+  
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         leading: role == 'Seeker'
             ? Column(children: [
                 Text('Score ${seekerScore.toString()}'),
-                Text('time: ${timeLeft2.toString()}'),
+                Countdown(
+              // controller: _controller,
+              seconds: 40,
+              build: (_, double time) => Text(
+                time.toString(),
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              interval: Duration(milliseconds: 100),
+              onFinished: () {
+         
+                _showWinner();
+              },
+            ),
+             //   Text('time: ${timeLeft2.toString()}'),
               ])
-            : Text('time: ${timeLeft.toString()}'),
+            :     Countdown(
+              // controller: _controller,
+              seconds: 40,
+              build: (_, double time) => Text(
+                time.toString(),
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              interval: Duration(milliseconds: 100),
+              onFinished: () {
+                role = 'Seeker';
+                readyScreen(context);
+                setState(() {
+                  
+                });
+              },
+            ),
         title: const Text('Object Hunt'),
         backgroundColor: Colors.red,
       ),
@@ -215,12 +200,12 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
                 role = 'Seeker';
                 readyScreen(context);
                 setState(() {
-                  _startCount2();
+                  // _startCount2();
                 });
-                _isVisible = true;
+           
               }
             : _showWinner,
-        child: Center(child: Text('End Turn')),
+        child: Icon(Icons.exit_to_app),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
@@ -245,23 +230,12 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
       seekerScore += 10;
       hiderScore -= 10;
     }
-    setState(() {});
+    setState(() {
+      
+    });
   }
 
-  void _addSphere() {
-    final material = ArCoreMaterial(
-      color: Colors.yellow,
-    );
-    final sphere = ArCoreSphere(
-      materials: [material],
-      radius: 0.1,
-    );
-    final sphereNode = ArCoreNode(
-      shape: sphere,
-      position: vector.Vector3(0, 0, -1.5),
-    );
-    arCoreController?.addArCoreNode(sphereNode);
-  }
+
 
   void _handleOnPlaneTap(List<ArCoreHitTestResult> hits) {
     if (role == 'Hider') {
@@ -284,38 +258,6 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
       hiderScore += 10;
     }
 
-    // final moonMaterial = ArCoreMaterial(color: Colors.blue);
 
-    // final moonShape = ArCoreSphere(
-    //   materials: [moonMaterial],
-    //   radius: 0.03,
-    // );
-
-    // final moon = ArCoreNode(
-    //   shape: moonShape,
-    //   position: vector.Vector3(0.2, 0, 0),
-    //   rotation: vector.Vector4(0, 0, 0, 0),
-    // );
-
-    // final earthMaterial = ArCoreMaterial(
-    //     color: Color.fromARGB(120, 66, 134, 244),);
-
-    // final earthShape = ArCoreCube(
-    //   materials: [earthMaterial],
-    //   size: vector.Vector3(0.5, 0.5, 0.5),
-    // );
-
-    // final earth = ArCoreNode(
-    //     shape: earthShape,
-    //     children: [moon],
-    //     position: hit.pose.translation + vector.Vector3(0.0, 1.0, 0.0),
-    //     rotation: hit.pose.rotation);
-
-    // arCoreController!.addArCoreNodeWithAnchor(earth);
-    // arCoreController!.addArCoreNode(earth);
-    // arCoreController!.addArCoreNodeWithAnchor(moon);
-    // arCoreController!.addArCoreNode(moon);
-    // arCoreController?.addArCoreNode(earth);
-    // arCoreController?.addArCoreNode(moon);
   }
 }

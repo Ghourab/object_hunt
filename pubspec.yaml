@@ -58,6 +58,8 @@ dependencies:
   animated_icon_button: ^1.0.2
   animated_text_kit: ^4.2.2
   random_avatar: ^0.0.7
+  circular_countdown_timer: ^0.2.3
+  timer_count_down: ^2.2.2
 
   
 
@@ -107,6 +109,7 @@ flutter:
     - assets/images/worried_big.png
     - assets/images/
     - assets/audio/
+    - assets/images/seeker.gif
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

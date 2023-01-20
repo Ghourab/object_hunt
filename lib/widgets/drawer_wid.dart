@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:object_hunt/screens/auth_screen.dart';
-import 'package:provider/provider.dart' as provider;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart' as provider;
 
 import '../providers/auth.dart';
 import '../providers/user_provider.dart';
-import '../screens/volume.dart';
 import '../screens/api_screen.dart';
 import '../screens/edit_profile.dart';
 import '../screens/rating_game.dart';
 import '../screens/settings_page.dart';
+import '../screens/volume.dart';
 
 class Menu extends ConsumerWidget {
   Menu({Key? key}) : super(key: key);

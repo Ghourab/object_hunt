@@ -48,7 +48,7 @@ android {
         applicationId "com.objecthuntt.object_hunt"
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode 4
+        versionCode 5
         versionName flutterVersionName
     }
 

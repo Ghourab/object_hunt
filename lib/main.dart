@@ -1,15 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart' as provider;
 
 import '/providers/auth.dart';
+import '/providers/user_provider.dart';
 import '../screens/splash_screen.dart';
 import 'screens/auth_screen.dart';
 import 'screens/start_screen.dart';
-import '/providers/user_provider.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

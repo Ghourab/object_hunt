@@ -156,6 +156,7 @@ void initState() {
     return Scaffold(
       appBar: AppBar(
         title: Text('Object Hunt'),
+        backgroundColor: Colors.red,
       ),
       body:  
    

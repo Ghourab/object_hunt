@@ -56,15 +56,15 @@ class _StartScreenState extends ConsumerState<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
-     Users player=Users(username:'',email: '',image: '',dob: '');
-      final data=ref.watch(newUserDataProivder)??player;
+    Users player = Users(username: '', email: '', image: '', dob: '');
+    final data = ref.watch(newUserDataProivder) ?? player;
     return AdvancedDrawer(
       backdropColor: Colors.black,
       controller: _advancedDrawerController,
       drawer: Menu(),
       child: Scaffold(
         backgroundColor: Colors.white,
-       
+
         // AppBar(
         //   leading: IconButton(
         //     icon: Icon(Icons.menu),
@@ -75,126 +75,127 @@ class _StartScreenState extends ConsumerState<StartScreen> {
         //   title: const Text('Welcome to Object Hunt'),
         //   actions: [Switch(value: false, onChanged: (MyThemes) {})],
         // ),
-        body:AnimateGradient(
-        primaryBegin: Alignment.topLeft,
-        primaryEnd: Alignment.bottomLeft,
-        secondaryBegin: Alignment.bottomLeft,
-        secondaryEnd: Alignment.topRight,
-        primaryColors: const [
-          Colors.red,
-          Colors.redAccent,
-          Colors.white,
-        ],
-        secondaryColors: const [
-          Colors.white,
-          Colors.redAccent,
-          Colors.red,
-        ],
-        child:  ScaffoldLayoutBuilder(
-          backgroundColorAppBar:
-            const ColorBuilder(Colors.transparent, Colors.red),
-        textColorAppBar: const ColorBuilder(Colors.white),
-        appBarBuilder: _appBar,
-          child: SingleChildScrollView(
-            
-             
-                  child:Stack(
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.4,
-                decoration: BoxDecoration(
-                  color: Colors.black,borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(40),
-
-                    ), ),
-                        child: Center(
-                            
-        child: Column(
-          children: [
-            SizedBox(height: 30,),
-            AnimatedIconButton(
-              size: 100,
-              onPressed: () {},
-              duration: const Duration(milliseconds: 500),
-              splashColor: Colors.transparent,
-              icons: const <AnimatedIconItem>[
-                AnimatedIconItem(
-                  icon: Icon(Icons.circle_rounded, color: Colors.red,),
-                ),
-                AnimatedIconItem(
-                  icon: Icon(Icons.hide_source, color: Colors.red),
-                ),
-              ],
-            ),
-            
-          
-           DefaultTextStyle(
-             style: const TextStyle(
-               fontSize: 30.0,
-               fontFamily: 'Agne',
-             ),
-             child: AnimatedTextKit(
-               animatedTexts: [
-                 TypewriterAnimatedText('Hi '+data.username+'!'),
-                
-               ],
-               onTap: () {
-                 print("Tap Event");
-               },
-             ),
-           ),
+        body: AnimateGradient(
+          primaryBegin: Alignment.topLeft,
+          primaryEnd: Alignment.bottomLeft,
+          secondaryBegin: Alignment.bottomLeft,
+          secondaryEnd: Alignment.topRight,
+          primaryColors: const [
+            Colors.red,
+            Colors.redAccent,
+            Colors.white,
           ],
-        ),
-        // AnimatedIconButton
-      ),
+          secondaryColors: const [
+            Colors.white,
+            Colors.redAccent,
+            Colors.red,
+          ],
+          child: ScaffoldLayoutBuilder(
+            backgroundColorAppBar:
+                const ColorBuilder(Colors.transparent, Colors.red),
+            textColorAppBar: const ColorBuilder(Colors.white),
+            appBarBuilder: _appBar,
+            child: SingleChildScrollView(
+              child: Stack(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.vertical(
+                        bottom: Radius.circular(40),
                       ),
-              
-        
-             
-              Padding(
-                padding: const EdgeInsets.fromLTRB(130.0,200,100,0),
-                child: Container(
-                  child: Column(children: [SizedBox(height: 100,),ElevatedButton(onPressed: ()=>playersScreen(context), child: Text('Play Game'),style: ElevatedButton.styleFrom(backgroundColor: Colors.black)),ElevatedButton(onPressed: ()=>leaderBoardScreen(context), child: Text('Score Board'),style: ElevatedButton.styleFrom(backgroundColor: Colors.black)),]),
-                  margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.36,
-                  ),
-                  height: 450,
-                  decoration: const BoxDecoration(
-                    
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(40),
                     ),
-                    
+                    child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 30,
+                          ),
+                          AnimatedIconButton(
+                            size: 100,
+                            onPressed: () {},
+                            duration: const Duration(milliseconds: 500),
+                            splashColor: Colors.transparent,
+                            icons: const <AnimatedIconItem>[
+                              AnimatedIconItem(
+                                icon: Icon(
+                                  Icons.circle_rounded,
+                                  color: Colors.red,
+                                ),
+                              ),
+                              AnimatedIconItem(
+                                icon:
+                                    Icon(Icons.hide_source, color: Colors.red),
+                              ),
+                            ],
+                          ),
+                          DefaultTextStyle(
+                            style: const TextStyle(
+                              fontSize: 30.0,
+                              fontFamily: 'Agne',
+                            ),
+                            child: AnimatedTextKit(
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                    'Hi ' + data.username + '!'),
+                              ],
+                              onTap: () {
+                                print("Tap Event");
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      // AnimatedIconButton
+                    ),
                   ),
-                ),
-              ),
-         
-  
-
-                   
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Column(children: [
+                        SizedBox(
+                          height: 100,
+                        ),
+                        ElevatedButton(
+                            onPressed: () => playersScreen(context),
+                            child: Text('Play Game'),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black)),
+                        ElevatedButton(
+                            onPressed: () => leaderBoardScreen(context),
+                            child: Text('Score Board'),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black)),
+                      ]),
+                      margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.36,
+                      ),
+                      height: 450,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(40),
+                        ),
+                      ),
+                    ),
                   ),
-              
+                ],
               ),
-          
+            ),
           ),
-      ), 
-        
-        
-        
-        
-       
         ),
-      
+      ),
     );
   }
+
   Widget _appBar(BuildContext context, ColorAnimated colorAnimated) {
     return AppBar(
       backgroundColor: colorAnimated.background,
       elevation: 0,
       title: Padding(
-        padding: const EdgeInsets.fromLTRB(0,0,50,0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 50, 0),
         child: Center(
           child: Text(
             "Object Hunt",
@@ -205,12 +206,10 @@ class _StartScreenState extends ConsumerState<StartScreen> {
         ),
       ),
       leading: IconButton(
-          onPressed: ()=>_advancedDrawerController.toggleDrawer(),
-        icon:Icon(Icons.menu),
+        onPressed: () => _advancedDrawerController.toggleDrawer(),
+        icon: Icon(Icons.menu),
         color: colorAnimated.color,
       ),
-      
     );
   }
-
 }

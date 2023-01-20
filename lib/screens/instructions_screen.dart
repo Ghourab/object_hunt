@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 
-import '../screens/hiderScreen.dart';
+import 'hider_screen.dart';
 
 class InstructionScreen extends StatefulWidget {
   const InstructionScreen({Key? key}) : super(key: key);

@@ -11,3 +11,8 @@ final getHiderData = StreamProvider((ref) {
   return FirebaseFirestore.instance.collection('highScore').orderBy('hiderScore',descending: true).
   snapshots();
 });
+
+final getSeekerData = StreamProvider((ref) {
+  return FirebaseFirestore.instance.collection('highScore').orderBy('SeekerScore',descending: true).
+  snapshots();
+});

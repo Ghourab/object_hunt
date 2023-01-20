@@ -9,9 +9,9 @@ import 'package:object_hunt/screens/player_names.dart';
 
 import '../models/user.dart';
 import '../providers/user_provider.dart';
-import '../screens/editProfile.dart';
-import '../screens/leaderBoardScreen.dart';
 import '../widgets/drawer_wid.dart';
+import 'edit_profile.dart';
+import 'hider_leaderboard_screen.dart';
 // import '../widgets/darkmode.dart';
 
 class StartScreen extends ConsumerStatefulWidget {
@@ -46,7 +46,7 @@ class _StartScreenState extends ConsumerState<StartScreen> {
     Navigator.of(ctx).push(
       MaterialPageRoute(
         builder: (_) {
-          return LeaderBoard();
+          return LeaderBoardHider();
         },
       ),
     );

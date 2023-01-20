@@ -2,10 +2,11 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../screens/arGameScreen.dart';
+import 'ready_screen.dart';
 
-class HiderScreen extends StatelessWidget {
-  
+class SeekerScreen extends StatelessWidget {
+  final List value;
+  const SeekerScreen({Key? key, required this.value}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +15,11 @@ class HiderScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         pageTransitionType: PageTransitionType.bottomToTop,
         splashTransition: SplashTransition.rotationTransition,
-        splash:   Container(child: Center(child: Text('Hider Turn',style:TextStyle(color: Colors.blue,fontSize: 46),)) ,color: Colors.black ,width:double.infinity),
+        splash:   Container(child: Center(child: Text('Seeker Turn',style:TextStyle(color: Colors.blue,fontSize: 46),)) ,color: Colors.black ,width:double.infinity),
         
-        nextScreen:  ArGameScreen(),
-
+        nextScreen:  ReadyScreen(),
+        
+  
 // we can use
         duration: 1000,
 //5000= 5 Second

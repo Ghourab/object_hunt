@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth.dart';
-import '../screens/Volume.dart';
 import '../screens/api_screen.dart';
-import '../screens/editProfile.dart';
-import '../screens/ratinggame.dart';
+import '../screens/edit_profile.dart';
+import '../screens/rating_game.dart';
 import '../screens/settings_page.dart';
+import '../screens/volume.dart';
 
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);

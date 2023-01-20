@@ -4,20 +4,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/players_highscores.dart';
 import '../providers/players_provider..dart';
 
-class ProfileScore extends ConsumerStatefulWidget {
-  const ProfileScore({Key? key}) : super(key: key);
+class ProfileScoreHider extends ConsumerStatefulWidget {
+  const ProfileScoreHider({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ProfileScore> createState() => _ProfileScoreState();
+  ConsumerState<ProfileScoreHider> createState() => _ProfileScoreState();
 }
 
-class _ProfileScoreState extends ConsumerState<ProfileScore> {
+class _ProfileScoreState extends ConsumerState<ProfileScoreHider> {
   
   @override
   Widget build(BuildContext context) {
-    var choosedPropertyTypeToGetData = ref.watch(getHiderData);
+    var hiderData = ref.watch(getHiderData);
  
-return choosedPropertyTypeToGetData.when(data:(data) { 
+return hiderData.when(data:(data) { 
 var player= PlayersHighscores.fromSnapshot(data.docs[0]) ;
     return LayoutBuilder(
       builder: (ctx, constraints) {

@@ -1,11 +1,13 @@
+import 'dart:async';
+
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:object_hunt/screens/readyScreen.dart';
+import 'package:object_hunt/screens/ready_screen.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
-import 'dart:async';
+
 import '../models/players.dart';
 import '../providers/players_provider..dart';
 

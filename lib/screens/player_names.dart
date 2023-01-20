@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:object_hunt/screens/instructionsScreen.dart';
+import 'package:object_hunt/screens/instructions_screen.dart';
 
 class Players extends StatefulWidget {
   const Players({Key? key}) : super(key: key);

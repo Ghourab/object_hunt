@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:object_hunt/models/players_highscores.dart';
 
-import '../providers/players_provider..dart';
-import '../widgets/gridview_leader.dart';
-import '../widgets/listview_leader.dart';
-import '../widgets/profileScore.dart';
+import '../widgets/hider_gridview_leader.dart';
+import '../widgets/hider_listview_leader.dart';
+import '../widgets/hider_profile_score.dart';
 
-class LeaderBoard extends ConsumerStatefulWidget {
-  const LeaderBoard({Key? key}) : super(key: key);
+class LeaderBoardHider extends StatefulWidget {
+  const LeaderBoardHider({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<LeaderBoard> createState() => _LeaderBoardState();
+  State<LeaderBoardHider> createState() => _LeaderBoardState();
 }
 
-class _LeaderBoardState extends ConsumerState<LeaderBoard> {
+class _LeaderBoardState extends State<LeaderBoardHider> {
 
 
   @override
   Widget build(BuildContext context) {
-      var choosedPropertyTypeToGetData = ref.watch(getHiderData);
+
  
-return choosedPropertyTypeToGetData.when(data:(data) { 
-var player= PlayersHighscores.fromSnapshot(data.docs[0]) ;
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
@@ -40,12 +37,12 @@ var player= PlayersHighscores.fromSnapshot(data.docs[0]) ;
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ProfileScore(),
+            ProfileScoreHider(),
             SizedBox(
               height: 20,
             ),
             Text(
-              "Leaderboard",
+              "Hiders Leaderboard",
               style: TextStyle(fontSize: 20),
             ),
             Container(
@@ -58,9 +55,9 @@ var player= PlayersHighscores.fromSnapshot(data.docs[0]) ;
                 child: LayoutBuilder(builder:
                     (BuildContext context, BoxConstraints constraints) {
                   if (constraints.maxWidth > 600) {
-                    return GridViewLeader();
+                    return GridViewLeaderHider();
                   } else {
-                    return ListViewLeader();
+                    return ListViewLeaderHider();
                   }
                 }),
               ),
@@ -69,7 +66,6 @@ var player= PlayersHighscores.fromSnapshot(data.docs[0]) ;
         ),
       ),
     );
-    }, loading:()=> Center(child: CircularProgressIndicator()),
-      error: (stacktrace, context)=>Text('Sameh'),);
+    
   }
 }

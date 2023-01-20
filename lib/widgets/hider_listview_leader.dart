@@ -8,16 +8,16 @@ import 'package:random_avatar/random_avatar.dart';
 import '../models/players_highscores.dart';
 import '../providers/players_provider..dart';
 
-class ListViewLeader extends ConsumerWidget {
-  const ListViewLeader({Key? key}) : super(key: key);
+class ListViewLeaderHider extends ConsumerWidget {
+  const ListViewLeaderHider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
     
   final List<Widget> _painters = <Widget>[];
-var choosedPropertyTypeToGetData = ref.watch(getHiderData);
+var hiderData = ref.watch(getHiderData);
  
-return choosedPropertyTypeToGetData.when(data:(data) { 
+return hiderData.when(data:(data) { 
 
   
     return Container(

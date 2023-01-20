@@ -92,13 +92,21 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-            title: Text('Congratulations the winner is '+players.seekerName),
+            title: Text('Winner is ' + players.seekerName + '!'),
             content: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('Hider name: ' + players.hiderName),
+                  Text('Hider name: ' + players.hiderName,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color:
+                              Color.fromARGB(255, 255, 2, 2).withOpacity(0.8))),
                   Text('Hider score: ' + players.hiderScore.toString()),
-                  Text('Seeker name: ' + players.seekerName),
+                  Text('Seeker name: ' + players.seekerName,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color:
+                              Color.fromARGB(255, 255, 2, 2).withOpacity(0.8))),
                   Text('Seeker score: ' + players.seekerScore.toString())
                 ]),
             actions: <Widget>[
@@ -107,6 +115,11 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
                   Navigator.of(ctx).popUntil((route) => route.isFirst);
                 },
                 child: Text('Okay'),
+                style: TextButton.styleFrom(
+                  foregroundColor: Color.fromARGB(255, 255, 255, 255),
+                  backgroundColor:
+                      Color.fromARGB(255, 255, 0, 0), // Background Color
+                ),
               )
             ]),
       );
@@ -134,57 +147,50 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
 
   List<dynamic> locations = [0];
 
-
-
   @override
   void initState() {
-  
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         leading: role == 'Seeker'
             ? Column(children: [
                 Text('Score ${seekerScore.toString()}'),
                 Countdown(
-              // controller: _controller,
-              seconds: 40,
-              build: (_, double time) => Text(
-                time.toString(),
-                style: TextStyle(
-                  fontSize: 20,
+                  // controller: _controller,
+                  seconds: 40,
+                  build: (_, double time) => Text(
+                    time.toString(),
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                  interval: Duration(milliseconds: 100),
+                  onFinished: () {
+                    _showWinner();
+                  },
                 ),
-              ),
-              interval: Duration(milliseconds: 100),
-              onFinished: () {
-         
-                _showWinner();
-              },
-            ),
-             //   Text('time: ${timeLeft2.toString()}'),
+                //   Text('time: ${timeLeft2.toString()}'),
               ])
-            :     Countdown(
-              // controller: _controller,
-              seconds: 40,
-              build: (_, double time) => Text(
-                time.toString(),
-                style: TextStyle(
-                  fontSize: 20,
+            : Countdown(
+                // controller: _controller,
+                seconds: 40,
+                build: (_, double time) => Text(
+                  time.toString(),
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
                 ),
+                interval: Duration(milliseconds: 100),
+                onFinished: () {
+                  role = 'Seeker';
+                  readyScreen(context);
+                  setState(() {});
+                },
               ),
-              interval: Duration(milliseconds: 100),
-              onFinished: () {
-                role = 'Seeker';
-                readyScreen(context);
-                setState(() {
-                  
-                });
-              },
-            ),
         title: const Text('Object Hunt'),
         backgroundColor: Colors.red,
       ),
@@ -202,7 +208,6 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
                 setState(() {
                   // _startCount2();
                 });
-           
               }
             : _showWinner,
         child: Icon(Icons.exit_to_app),
@@ -230,12 +235,8 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
       seekerScore += 10;
       hiderScore -= 10;
     }
-    setState(() {
-      
-    });
+    setState(() {});
   }
-
-
 
   void _handleOnPlaneTap(List<ArCoreHitTestResult> hits) {
     if (role == 'Hider') {
@@ -257,7 +258,5 @@ class _ArGameScreenState extends ConsumerState<ArGameScreen> {
 
       hiderScore += 10;
     }
-
-
   }
 }

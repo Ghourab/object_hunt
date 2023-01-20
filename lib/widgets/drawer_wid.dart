@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:object_hunt/screens/auth_screen.dart';
+import 'package:provider/provider.dart' as provider;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/auth.dart';
+import '../providers/user_provider.dart';
+import '../screens/volume.dart';
 import '../screens/api_screen.dart';
 import '../screens/edit_profile.dart';
 import '../screens/rating_game.dart';
 import '../screens/settings_page.dart';
-import '../screens/volume.dart';
 
-class Menu extends StatelessWidget {
-  const Menu({Key? key}) : super(key: key);
+class Menu extends ConsumerWidget {
+  Menu({Key? key}) : super(key: key);
+  bool isDarkModeEnabled = false;
 
   void editProfileScreen(BuildContext ctx) async {
     await Navigator.of(ctx).push(
@@ -62,16 +66,13 @@ class Menu extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return Drawer(
-        child: Column(
-      children: [
+      child: Column(children: [
         SizedBox(
           height: 100,
-          
-            child: Container(
-                color: Colors.red, child: Center(child: Text('Menu'))),
-      
+          child:
+              Container(color: Colors.red, child: Center(child: Text('Menu'))),
         ),
         ListTile(
           title: Text('Profile'),
@@ -81,6 +82,14 @@ class Menu extends StatelessWidget {
           title: Text('Settings'),
           onTap: () => settingsGame(context),
         ),
+        ListTile(
+            title: Text('Change Theme'),
+            onTap: () {
+              isDarkModeEnabled = !isDarkModeEnabled;
+              ref
+                  .read(themeProvider.notifier)
+                  .setThemeState(isDarkModeEnabled ? 'dark' : 'light');
+            }),
         ListTile(
           title: Text('Volume'),
           onTap: () => gameVolume(context),
@@ -94,13 +103,12 @@ class Menu extends StatelessWidget {
           onTap: () => apiScreen(context),
         ),
         ListTile(
-          leading: Icon(Icons.exit_to_app),
-          title: Text('Logout'),
-          onTap: () {
-            Provider.of<Auth>(context, listen: false).logout();
-          },
-        ),
-      ],
-    ));
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Logout'),
+            onTap: () {
+              provider.Provider.of<Auth>(context, listen: false).logout();
+            }),
+      ]),
+    );
   }
 }

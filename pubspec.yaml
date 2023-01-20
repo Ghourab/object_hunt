@@ -101,6 +101,9 @@ flutter:
     - assets/images/surprised.png
     - assets/images/surprised_big.png
     - assets/images/worried.png
+    - assets/images/heart_border.png
+    - assets/images/heart_half.png
+    - assets/images/heart.png
     - assets/images/worried_big.png
     - assets/images/
     - assets/audio/

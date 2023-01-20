@@ -20,43 +20,17 @@ class _RatinggameState extends State<Ratinggame> {
             const Text('Game Rating',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, height: 5, fontSize: 10)),
-            RatingBar.builder(
+            RatingBar(
               initialRating: 3,
+              direction: Axis.horizontal,
+              allowHalfRating: true,
               itemCount: 5,
-              itemBuilder: (context, index) {
-                switch (index) {
-                  case 0:
-                    return Icon(
-                      Icons.sentiment_very_dissatisfied,
-                      color: Colors.red,
-                    );
-                  case 1:
-                    return Icon(
-                      Icons.sentiment_dissatisfied,
-                      color: Colors.redAccent,
-                    );
-                  case 2:
-                    return Icon(
-                      Icons.sentiment_neutral,
-                      color: Colors.amber,
-                    );
-                  case 3:
-                    return Icon(
-                      Icons.sentiment_satisfied,
-                      color: Colors.lightGreen,
-                    );
-                  case 4:
-                    return Icon(
-                      Icons.sentiment_very_satisfied,
-                      color: Colors.green,
-                    );
-                  default:
-                    return const Icon(
-                      Icons.sentiment_very_satisfied,
-                      color: Colors.green,
-                    );
-                }
-              },
+              ratingWidget: RatingWidget(
+                full: Image.asset('assets/images/heart.png'),
+                half: Image.asset('assets/images/heart_half.png'),
+                empty: Image.asset('assets/images/heart_border.png'),
+              ),
+              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
               onRatingUpdate: (rating) {
                 print(rating);
               },

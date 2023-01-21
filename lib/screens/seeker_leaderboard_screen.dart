@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../widgets/seeker_gridview_leader.dart';
 import '../widgets/seeker_listview_leader.dart';
@@ -12,6 +13,26 @@ class LeaderBoardSeeker extends StatefulWidget {
 }
 
 class _LeaderBoardState extends State<LeaderBoardSeeker> {
+
+   @override
+  void initState() {
+    SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+     SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitUp,
+  ]);
+    super.dispose();
+  }
 
 
   @override

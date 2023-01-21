@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../widgets/hider_gridview_leader.dart';
 import '../widgets/hider_listview_leader.dart';
@@ -13,7 +14,25 @@ class LeaderBoardHider extends StatefulWidget {
 
 class _LeaderBoardState extends State<LeaderBoardHider> {
 
+  @override
+  void initState() {
+    SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+    super.initState();
+  }
 
+  @override
+  void dispose() {
+     SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitUp,
+  ]);
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
 

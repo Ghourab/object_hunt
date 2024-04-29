@@ -23,6 +23,8 @@ import '../models/user.dart';
 // );
 final themeProvider = StateNotifierProvider<ThemesState, AsyncValue<String>>(
     (ref) => ThemesState());
+
+    
 final newUserDataProivder = StateProvider<Users?>((ref) {
   return null;
 });

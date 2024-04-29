@@ -1,8 +1,8 @@
-import 'package:object_hunt/models/api_model.dart';
-
 import 'package:flutter/material.dart';
-import '../services/api_service.dart';
+import 'package:object_hunt/models/api_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../services/api_service.dart';
 
 class APi extends StatefulWidget {
   APi({Key? key}) : super(key: key);
